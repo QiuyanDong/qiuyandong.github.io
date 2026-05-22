@@ -1,0 +1,23 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Yunmai Dong",
+    "section": "",
+    "text": "Home\n\n\nStatistics & Data Science student at UC Santa Barbara focused on analytics, machine learning, biomedical data, and research-oriented data science.\nI build reproducible analyses that connect statistical evidence, domain context, and clear communication for scientific and decision-making workflows.\n\nView Projects Download Resume\n\n\n\n\n\n\nYD\n\nDATA / SIGNAL / MODEL\n\n\n\n\nAbout\n\n\n\n\n\nI am a Statistics & Data Science student at UC Santa Barbara interested in data analytics, machine learning, biomedical data, and research-driven analysis.\nMy work centers on reproducible reports, thoughtful quality control, statistical modeling, and evidence synthesis. I am especially interested in roles where I can help transform complex research or operational datasets into reliable, interpretable insights.\n\nR\nPython\nSQL\nQuarto\nggplot2\ntidyverse\nData Visualization\nStatistical Modeling\nMachine Learning\n\n\n\n\n\n\nFeatured Projects\n\n\n\n\nSelected projects across biomedical data, reproducible statistics, and language-focused text analysis.\n\n\n\nBiomedical Data\n\n\nQuestion: How can section-level QC identify tissue, segmentation, and assay-quality issues across tumor and organoid spatial transcriptomics data?\nTools: AtoMx SIP, QC metrics, spatial transcriptomics analysis.\nOutput: A section-level QC workflow for reviewing tissue quality, comparing runs, and flagging samples for downstream analysis decisions.\n\nAtoMx SIP\nQC Metrics\nSpatial Transcriptomics\n\nGitHub Report\n\n\n\nBiomedical Evidence\n\n\nQuestion: Which public biomedical evidence supports or weakens a proposed CAR-T research hypothesis?\nTools: Python, GEO, PubMed, ClinicalTrials.gov, statistical testing.\nOutput: A reproducible evidence-scoring pipeline that combines dataset review, literature signals, trial context, and statistical checks.\n\nPython\nGEO\nPubMed\nStatistical Testing\n\nGitHub Report\n\n\n\nStatistical Analysis\n\n\nQuestion: How can course-based analyses be made reproducible, well-visualized, and easy to evaluate?\nTools: R, Quarto, ggplot2, dplyr, hypothesis testing, ANOVA.\nOutput: A collection of polished statistical reports with clear assumptions, visual summaries, model interpretation, and reproducible code.\n\nR\nQuarto\nggplot2\ndplyr\nANOVA\n\nGitHub Report\n\n\n\nText Analysis\n\n\nQuestion: How do online discourse communities develop specialized language, norms, and recurring rhetorical patterns?\nTools: Corpus collection, qualitative coding, IMRaD writing.\nOutput: A structured text-analysis report connecting corpus evidence, coded patterns, and community-level interpretation.\n\nCorpus Collection\nQualitative Coding\nIMRaD Writing\n\nGitHub Report\n\n\n\n\n\n\nExperience\n\n\n\n\n\n\nCurrent\n\n\nCoursework and projects in statistical modeling, machine learning, data visualization, reproducible reporting, and applied analysis.\n\n\n\nResearch\n\n\nExperience supporting research-oriented workflows, including section-level QC, biomedical hypothesis evaluation, and evidence synthesis.\n\n\n\nWriting\n\n\nPrepared concise reports that combine statistical reasoning, visual evidence, and accessible interpretation for technical readers.\n\n\n\n\n\n\nResume\n\n\nInterested in data analytics, machine learning, biomedical data, and research-oriented data science internships. Core tools include R, Python, SQL, Quarto, ggplot2, tidyverse, statistical modeling, and machine learning.\n\n\nDownload Resume\n\n\nContact\n\n\n\nyunmai.dong@example.com LinkedIn GitHub"
+  },
+  {
+    "objectID": "index.html#data-science-resume",
+    "href": "index.html#data-science-resume",
+    "title": "Yunmai Dong",
+    "section": "",
+    "text": "Interested in data analytics, machine learning, biomedical data, and research-oriented data science internships. Core tools include R, Python, SQL, Quarto, ggplot2, tidyverse, statistical modeling, and machine learning."
+  },
+  {
+    "objectID": "index.html#open-to-data-science-internships-and-research-oriented-analytics-roles.",
+    "href": "index.html#open-to-data-science-internships-and-research-oriented-analytics-roles.",
+    "title": "Yunmai Dong",
+    "section": "",
+    "text": "yunmai.dong@example.com LinkedIn GitHub"
+  }
+]

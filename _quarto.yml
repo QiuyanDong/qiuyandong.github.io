@@ -1,0 +1,39 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Yunmai Dong"
+  site-url: "https://your-github-username.github.io/your-repo-name"
+  description: "Yunmai Dong's data science portfolio for analytics, machine learning, biomedical data, and research-oriented roles."
+  navbar:
+    pinned: true
+    left:
+      - text: "Home"
+        href: "#home"
+      - text: "About"
+        href: "#about"
+      - text: "Projects"
+        href: "#projects"
+      - text: "Experience"
+        href: "#experience"
+      - text: "Resume"
+        href: "#resume"
+      - text: "Contact"
+        href: "#contact"
+  page-footer:
+    center: "Built with Quarto · Deployed with GitHub Pages"
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: false
+    page-layout: full
+    smooth-scroll: true
+    anchor-sections: false
+    code-fold: true
+    link-external-newwindow: true
+
+execute:
+  freeze: auto

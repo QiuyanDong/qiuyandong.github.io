@@ -43,7 +43,7 @@ listing: false
 :::
 
 ::: {.portrait-wireframe aria-label="Portrait of Qiuyan Dong"}
-<img class="portrait-image" src="assets/profile.jpg" alt="Portrait of Qiuyan Dong" onload="this.closest('.portrait-wireframe').classList.add('has-image');" onerror="this.classList.add('is-missing'); this.closest('.portrait-wireframe').classList.remove('has-image'); this.removeAttribute('src');" />
+<img class="portrait-image" src="assets/profile-ascii.svg" alt="ASCII portrait of Qiuyan Dong" onload="this.closest('.portrait-wireframe').classList.add('has-image');" onerror="this.classList.add('is-missing'); this.closest('.portrait-wireframe').classList.remove('has-image'); this.removeAttribute('src');" />
 
 ::: {.portrait-fallback aria-hidden="true"}
 [QD]{.portrait-initials}

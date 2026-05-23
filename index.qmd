@@ -1,5 +1,5 @@
 ---
-title: "Yunmai Dong"
+title: "Qiuyan Dong (Ann Dong)"
 subtitle: "Data Science Portfolio"
 listing: false
 ---
@@ -10,26 +10,48 @@ listing: false
 ::: {.hero-copy}
 [Home]{.section-label}
 
-# Yunmai Dong
+# QIUYAN DONG
 
-[Statistics & Data Science student at UC Santa Barbara focused on analytics, machine learning, biomedical data, and research-oriented data science.]{.positioning}
+[(Ann Dong)]{.name-alias}
 
-[I build reproducible analyses that connect statistical evidence, domain context, and clear communication for scientific and decision-making workflows.]{.quick-summary}
+[Statistics & Data Science @ UC Santa Barbara]{.positioning}
+
+[I build interpretable and optimization-driven models for real-world decision-making across environmental planning, biodiversity classification, climate forecasting, and scheduling systems.]{.quick-summary}
 
 ::: {.button-row}
 [View Projects](#projects){.button-primary}
-[Download Resume](#resume){.button-secondary}
+[Download Resume](assets/files/QiuyanDongResume.pdf){.button-secondary}
+:::
+
+::: {.hero-skills aria-label="Core skills"}
+[Python]{.tag}
+
+[R]{.tag}
+
+[SQL]{.tag}
+
+[Scikit-learn]{.tag}
+
+[Quarto]{.tag}
+
+[Machine Learning]{.tag}
+
+[Optimization]{.tag}
+
+[Data Visualization]{.tag}
 :::
 :::
 
-::: {.portrait-wireframe aria-label="Portrait of Yunmai Dong"}
-<img class="portrait-image" src="assets/profile.jpg" alt="Portrait of Yunmai Dong" onload="this.closest('.portrait-wireframe').classList.add('has-image');" onerror="this.classList.add('is-missing'); this.closest('.portrait-wireframe').classList.remove('has-image'); this.removeAttribute('src');" />
+::: {.portrait-wireframe aria-label="Portrait of Qiuyan Dong"}
+<img class="portrait-image" src="assets/profile.jpg" alt="Portrait of Qiuyan Dong" onload="this.closest('.portrait-wireframe').classList.add('has-image');" onerror="this.classList.add('is-missing'); this.closest('.portrait-wireframe').classList.remove('has-image'); this.removeAttribute('src');" />
 
 ::: {.portrait-fallback aria-hidden="true"}
-[YD]{.portrait-initials}
+[QD]{.portrait-initials}
 :::
 
-[DATA / SIGNAL / MODEL]{.portrait-caption}
+[MODEL / SIGNAL / DECISION]{.portrait-caption}
+
+[DATA / CLASSIFICATION / FORECASTING]{.portrait-subcaption}
 :::
 :::
 
@@ -37,13 +59,13 @@ listing: false
 ::: {.section-intro}
 [About]{.section-label}
 
-## Statistics, Data Science, and Biomedical Questions
+## Modeling Real-World Decisions
 :::
 
 ::: {.section-body}
-I am a Statistics & Data Science student at UC Santa Barbara interested in data analytics, machine learning, biomedical data, and research-driven analysis.
+I am Qiuyan Dong, also known as Ann Dong, a Statistics & Data Science student at UC Santa Barbara interested in data analytics, machine learning, optimization, biomedical and environmental data, and research-oriented data science.
 
-My work centers on reproducible reports, thoughtful quality control, statistical modeling, and evidence synthesis. I am especially interested in roles where I can help transform complex research or operational datasets into reliable, interpretable insights.
+My strength is translating messy real-world problems into structured models, then validating them through sensitivity analysis, cross-validation, and clear communication. I like projects where statistical reasoning and machine learning can support decisions people actually need to make.
 
 ::: {.tag-list aria-label="Skill tags"}
 [R]{.tag}
@@ -63,6 +85,12 @@ My work centers on reproducible reports, thoughtful quality control, statistical
 [Statistical Modeling]{.tag}
 
 [Machine Learning]{.tag}
+
+[Optimization]{.tag}
+
+[Cross-validation]{.tag}
+
+[Sensitivity Analysis]{.tag}
 :::
 :::
 :::
@@ -72,109 +100,111 @@ My work centers on reproducible reports, thoughtful quality control, statistical
 ::: {}
 [Featured Projects]{.section-label}
 
-## Research and Analysis Work
+## Models for Planning, Classification, Forecasting, and Scheduling
 :::
 
-Selected projects across biomedical data, reproducible statistics, and language-focused text analysis.
+Selected projects that connect statistical modeling, machine learning, optimization, and decision-focused communication.
 :::
 
 ::: {.project-grid}
 ::: {.project-card}
-[Biomedical Data]{.card-label}
+[Optimization Modeling]{.card-label}
 
-### Spatial Transcriptomics QC for CosMx/AtoMx
+### Land Use Optimization Modeling for Sustainable Development
 
-**Question:** How can section-level QC identify tissue, segmentation, and assay-quality issues across tumor and organoid spatial transcriptomics data?
+**Problem:** How can land-use planning balance economic, environmental, and community impacts under competing development priorities?
 
-**Tools:** AtoMx SIP, QC metrics, spatial transcriptomics analysis.
+**Methods:** Built a three-stage analytical pipeline using OpenCV-style map segmentation, heat maps, erosion/dilation, multi-factor evaluation, AHP, and a genetic algorithm.
 
-**Output:** A section-level QC workflow for reviewing tissue quality, comparing runs, and flagging samples for downstream analysis decisions.
+**Outcome:** Produced an optimization framework with sensitivity and generalizability analysis to compare planning scenarios and make tradeoffs more transparent.
 
 ::: {.metadata-row}
-[AtoMx SIP]{.tag}
+[OpenCV]{.tag}
 
-[QC Metrics]{.tag}
+[AHP]{.tag}
 
-[Spatial Transcriptomics]{.tag}
+[Genetic Algorithm]{.tag}
+
+[Sensitivity Analysis]{.tag}
 :::
 
+[Report](assets/files/US-12850.pdf)
 [GitHub](#)
-[Report](#)
 :::
 
 ::: {.project-card}
-[Biomedical Evidence]{.card-label}
+[Classification]{.card-label}
 
-### CAR-T Hypothesis Validation Pipeline
+### Species Classification for Lizard Biodiversity Analysis
 
-**Question:** Which public biomedical evidence supports or weakens a proposed CAR-T research hypothesis?
+**Problem:** Can morphometric measurements reliably classify 8 lizard species and sex for biodiversity analysis?
 
-**Tools:** Python, GEO, PubMed, ClinicalTrials.gov, statistical testing.
+**Methods:** Compared SVM, AdaBoost, and Random Forest models with 8-fold cross-validation, kernel selection, feature optimization, StandardScaler, and PCA.
 
-**Output:** A reproducible evidence-scoring pipeline that combines dataset review, literature signals, trial context, and statistical checks.
+**Outcome:** Reached up to 99.82% accuracy for species isolation and used robustness analysis to evaluate model stability across feature choices.
 
 ::: {.metadata-row}
-[Python]{.tag}
+[SVM]{.tag}
 
-[GEO]{.tag}
+[Random Forest]{.tag}
 
-[PubMed]{.tag}
+[AdaBoost]{.tag}
 
-[Statistical Testing]{.tag}
+[PCA]{.tag}
 :::
 
+[Report](assets/files/2023_IMMC23061054_ProblemE.pdf)
 [GitHub](#)
-[Report](#)
 :::
 
 ::: {.project-card}
-[Statistical Analysis]{.card-label}
+[Forecasting]{.card-label}
 
-### Data Science Coursework Portfolio
+### Climate Change Modeling: CO2 Concentration & Global Temperature Correlation
 
-**Question:** How can course-based analyses be made reproducible, well-visualized, and easy to evaluate?
+**Problem:** How strongly do atmospheric CO2 concentration and global mean surface-air temperature move together, and how can future trends be forecasted?
 
-**Tools:** R, Quarto, ggplot2, dplyr, hypothesis testing, ANOVA.
+**Methods:** Built regression, ARIMA, and BP neural network models, then compared performance with R2 = 0.999, sensitivity analysis, and Pearson/Spearman correlation.
 
-**Output:** A collection of polished statistical reports with clear assumptions, visual summaries, model interpretation, and reproducible code.
+**Outcome:** Framed climate modeling as both statistical forecasting and climate-risk communication, translating model results into interpretable trend evidence.
 
 ::: {.metadata-row}
-[R]{.tag}
+[Regression]{.tag}
 
-[Quarto]{.tag}
+[ARIMA]{.tag}
 
-[ggplot2]{.tag}
+[BP Neural Network]{.tag}
 
-[dplyr]{.tag}
-
-[ANOVA]{.tag}
+[Correlation]{.tag}
 :::
 
+[Report](assets/files/2022_Himcm_Problem_B_team12850.pdf)
 [GitHub](#)
-[Report](#)
 :::
 
 ::: {.project-card .optional-card}
-[Text Analysis]{.card-label}
+[Scheduling Optimization]{.card-label}
 
-### Reddit Corpus / Text Analysis Project
+### Intelligent Course Scheduling System Using Genetic Algorithm
 
-**Question:** How do online discourse communities develop specialized language, norms, and recurring rhetorical patterns?
+**Problem:** How can schools generate course schedules that satisfy hard constraints while improving classroom utilization, walking distance, and timing preferences?
 
-**Tools:** Corpus collection, qualitative coding, IMRaD writing.
+**Methods:** Started with user interviews with school administrators, modeled hard and soft constraints, and implemented a genetic algorithm from scratch with adaptive crossover/mutation and conflict-resolution logic.
 
-**Output:** A structured text-analysis report connecting corpus evidence, coded patterns, and community-level interpretation.
+**Outcome:** Designed a prototype mini-program visualization and outlined a future A/B testing roadmap to evaluate scheduling usability and operational impact.
 
 ::: {.metadata-row}
-[Corpus Collection]{.tag}
+[Genetic Algorithm]{.tag}
 
-[Qualitative Coding]{.tag}
+[Constraint Modeling]{.tag}
 
-[IMRaD Writing]{.tag}
+[Prototype]{.tag}
+
+[A/B Testing Roadmap]{.tag}
 :::
 
-[GitHub](#)
 [Report](#)
+[GitHub](#)
 :::
 :::
 :::
@@ -183,32 +213,24 @@ Selected projects across biomedical data, reproducible statistics, and language-
 ::: {.section-intro}
 [Experience]{.section-label}
 
-## Education and Research Experience
+## Applied Data and Teaching Experience
 :::
 
 ::: {.timeline}
 ::: {.timeline-item}
-[Current]{.timeframe}
+[Internship]{.timeframe}
 
-### Statistics & Data Science Student · UC Santa Barbara
+### Marine Engineering Environmental Research Center · Digitalization and Data Analyst Intern
 
-Coursework and projects in statistical modeling, machine learning, data visualization, reproducible reporting, and applied analysis.
+Supported data lakehouse development for satellite, sensor, and survey data by standardizing metadata, improving SQL-accessible retrieval paths, and building ETL dashboards with Python and JavaScript. Worked with machine learning models including XGBoost, LSTM, and CNN, and contributed to optimization models for coastal island resource planning.
 :::
 
 ::: {.timeline-item}
-[Research]{.timeframe}
+[Teaching]{.timeframe}
 
-### Biomedical Data and Spatial Transcriptomics
+### RuiXue Education · Teaching Assistant and Science Tutor
 
-Experience supporting research-oriented workflows, including section-level QC, biomedical hypothesis evaluation, and evidence synthesis.
-:::
-
-::: {.timeline-item}
-[Writing]{.timeframe}
-
-### Technical Communication and Reproducible Reports
-
-Prepared concise reports that combine statistical reasoning, visual evidence, and accessible interpretation for technical readers.
+Built a Python analytics pipeline for student performance tracking, identified learning gaps, and supported personalized instruction through a recommendation engine and LLM interface for adaptive practice.
 :::
 :::
 :::
@@ -219,21 +241,21 @@ Prepared concise reports that combine statistical reasoning, visual evidence, an
 
 ## Data Science Resume
 
-Interested in data analytics, machine learning, biomedical data, and research-oriented data science internships. Core tools include R, Python, SQL, Quarto, ggplot2, tidyverse, statistical modeling, and machine learning.
+Interested in data analytics, machine learning, optimization, biomedical/environmental data, and research-oriented data science internships. Core strengths include model validation, sensitivity analysis, cross-validation, and translating technical results into decisions.
 :::
 
-[Download Resume](assets/resume.pdf){.button-primary}
+[Download Resume](assets/files/QiuyanDongResume.pdf){.button-primary}
 :::
 
 ::: {#contact .wire-section .contact-section}
 [Contact]{.section-label}
 
-## Open to data science internships and research-oriented analytics roles.
+## Open to data science, analytics, optimization, and research-oriented internship roles.
 
 ::: {.contact-links}
-[yunmai.dong@example.com](mailto:yunmai.dong@example.com)
-[LinkedIn](https://www.linkedin.com/in/yunmai-dong/)
-[GitHub](https://github.com/yunmai-dong)
+[qiuyan.dong@example.com](mailto:qiuyan.dong@example.com)
+[LinkedIn](https://www.linkedin.com/in/qiuyan-dong/)
+[GitHub](https://github.com/qiuyan-dong)
 :::
 :::
 

@@ -3,9 +3,10 @@ project:
   output-dir: docs
 
 website:
-  title: "Yunmai Dong"
+  title: "Qiuyan Dong (Ann Dong)"
   site-url: "https://your-github-username.github.io/your-repo-name"
-  description: "Yunmai Dong's data science portfolio for analytics, machine learning, biomedical data, and research-oriented roles."
+  description: "Qiuyan Dong's data science portfolio for machine learning, optimization, forecasting, classification, and research decision-making."
+  search: false
   navbar:
     pinned: true
     left:
@@ -26,7 +27,7 @@ website:
 
 format:
   html:
-    theme: cosmo
+    theme: none
     css: styles.css
     toc: false
     page-layout: full

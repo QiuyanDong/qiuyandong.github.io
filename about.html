@@ -48,21 +48,20 @@
           replace this block with an <code>&lt;img&gt;</code> tag.</div>
       </figure>
 
-      <p>I'm Ann Dong, a <span class="todo">[YEAR]</span> student at
-        <span class="todo">[UNIVERSITY]</span> studying
-        <span class="todo">[MAJOR]</span>.</p>
+      <p>I'm Ann Dong, a third-year student at UC Santa Barbara studying Statistics and 
+        Data Science.</p>
 
-      <p><span class="todo">[WRITE THIS YOURSELF — three to five sentences on how you got
-        into this field and what specifically keeps you in it. Not "I've always loved
-        data." Something a stranger couldn't have guessed: the class that changed your
-        mind, the problem you couldn't stop thinking about, the moment a dataset finally
-        made sense. This paragraph is the difference between your site and every other
-        student portfolio, and it's the one nobody else can write for you.]</span></p>
+      <p>I came to data science through math, and specifically through
+        mathematical modeling. Building models taught me something I hadn't
+        expected: the model is rarely the hard part. The data is — how it was
+        collected, what it leaves out, and whether it can support the question
+        you're asking at all. What keeps me here is narrower than a general
+        interest in data: I like the point where a messy, uncooperative dataset
+        finally resolves into something you can say out loud, and I like being
+        the person who explains it to someone who wasn't in the room.</p>
 
-      <p><span class="todo">[ONE SENTENCE, something genuinely personal and
-        non-academic. A hobby, a place, something you're learning badly and enjoying
-        anyway. One sentence only — your own Voice Chart says playful moments are
-        seasoning, not the meal.]</span></p>
+      <p>I draw and I skate — quiet, absorbing things, which is also how I'd describe 
+        a good afternoon with a dataset.</p>
     </div>
   </section>
 
@@ -85,20 +84,38 @@
 
       <div class="entry">
         <h3>Artificial intelligence and machine learning</h3>
-        <p><span class="todo">[TWO TO FOUR SENTENCES. Go deeper than the homepage version
-          — don't repeat it. What specifically do you work on, and what question are you
-          chasing? Define any term a non-specialist wouldn't know, and add it to the
-          margin on the left.]</span></p>
+        <p>Most of my machine learning work has been supervised classification on
+          real, imperfect measurement data. In a biodiversity project I compared
+          support vector machines, AdaBoost, and random forests on morphometric
+          data — body measurements — to distinguish eight lizard species, reaching
+          99.82% accuracy on species separation. The interesting part wasn't the
+          headline number. It was working out which measurements actually carried
+          the signal, and how much of the remaining error belonged to the data
+          rather than the model.</p>
       </div>
 
       <div class="entry">
         <h3>Data science and statistical modeling</h3>
-        <p><span class="todo">[TWO TO FOUR SENTENCES.]</span></p>
-      </div>
+        <p>This is where most of my time goes. I work with time series and
+          regression — fitting ARIMA models to atmospheric CO₂ and global
+          temperature records, then regressing on the residuals to catch structure
+          the first model missed. That project reached an R² of 0.999 and a Pearson
+          correlation of 0.961 between CO₂ and temperature. But the number I trust
+          more came out of the sensitivity analysis: how far the forecast moved
+          when I perturbed the parameters.</p>
 
       <div class="entry">
         <h3>Computational biology and biomedical data analysis</h3>
-        <p><span class="todo">[TWO TO FOUR SENTENCES.]</span></p>
+        <p>I proofread neuron reconstructions in electron microscopy connectomes.
+          Segmentation algorithms trace neurons through stacked EM images
+          automatically, and they make two characteristic mistakes: merge errors,
+          where two separate neurons get fused into one, and split errors, where a
+          single neuron is broken into fragments. Correcting them means following a
+          cell's shape slice by slice through the volume and deciding, from the
+          continuity of its processes, whether two pieces are the same neuron.
+          Working in CAVE and Neuroglancer, I proofread eight anatomical regions
+          across two reconstruction versions and helped identify neurons that
+          hadn't been correctly mapped before.</p>
       </div>
     </div>
   </section>
@@ -116,13 +133,26 @@
 
       <div class="entry">
         <h3>Connectomics annotation</h3>
-        <p><span class="todo">[THREE SENTENCES: the question you're asking, your
-          approach, and where it stands.]</span></p>
+        <p>The reconstructions I proofread feed into circuit-level analysis —
+          questions about how information actually moves through a nervous system.
+          That analysis is only as good as the wiring diagram underneath it, and a
+          single unresolved merge error can invent a connection that doesn't exist.
+          I'm continuing to proofread and to help recover neurons that earlier
+          passes missed, which is slow work with an unusually direct payoff:
+          everything built on top of this data inherits whatever I get wrong.</p>
       </div>
 
       <div class="entry">
-        <h3><span class="todo">[SECOND RESEARCH AREA]</span></h3>
-        <p><span class="todo">[THREE SENTENCES.]</span></p>
+        <h3>LLM agent workflows</h3>
+        <p>I built an agent workflow that turns a wind turbine's bill of
+        materials into a full life-cycle carbon footprint report — 14 nodes
+        alternating between code nodes that compute and LLM nodes that extract
+        and write. The platform wouldn't pass data directly between code nodes,
+        so the LLM nodes double as typed data couriers, each one instructed to
+        reserialise its input as JSON without altering a single number. That
+        constraint shaped the whole architecture, and it's also the main risk:
+        a language model sitting in the middle of a numerical pipeline is a
+        place where digits can quietly change.</p>
       </div>
     </div>
   </section>
@@ -131,12 +161,17 @@
     <div class="gutter"></div>
     <div class="main">
       <h2>Where I'm headed</h2>
-      <p><span class="todo">[WRITE THIS YOURSELF — near term: what kind of role or
-        internship, and what you'd want to be doing in it. "Looking for a data science
-        internship" tells a recruiter nothing they didn't already assume, so be specific
-        enough that someone could act on it.]</span></p>
-      <p><span class="todo">[Longer term: graduate study, research direction, the kind of
-        problem you want to spend years on.]</span></p>
+      <p>Near term, I'm looking for a summer 2027 internship in data science,
+        analytics, or business analytics. What I want out of it is a problem
+        where the data is messy enough that cleaning it is part of the work, and
+        where somebody downstream actually acts on the answer — the kind of
+        setting where a model's honest uncertainty matters more than its headline
+        score.</p>
+
+      <p>Longer term I plan to go to graduate school, most likely in DATA SCIENCE. 
+        The problems that keep pulling me back are the ones where a
+        real decision has to be made under constraints somebody else set, and
+        where the honest answer is a range rather than a number.</p>
       <div class="btn-row">
         <a class="btn btn-solid" href="resume.html">See my resume</a>
         <a class="btn btn-ghost" href="projects.html">See my work</a>
@@ -150,9 +185,9 @@
   <div class="footer-inner">
     <span>Ann Dong — Data Science Portfolio</span>
     <div class="footer-links">
-      <a href="mailto:you@example.com">Email</a>
-      <a href="https://github.com/">GitHub</a>
-      <a href="https://linkedin.com/">LinkedIn</a>
+      <a href="mailto:qiuyandong@ucsb.edu">Email</a>
+      <a href="https://github.com/qiuyandong">GitHub</a>
+      <a href="https://www.linkedin.com/in/ann-dong-a5a053351">LinkedIn</a>
     </div>
   </div>
 </footer>

@@ -8,22 +8,25 @@
 :root {
   --paper:      #F8F9FA;
   --surface:    #FFFFFF;
+  --dark:       #14201F;
   --ink:        #14161A;
   --ink-soft:   #5C6470;
   --rule:       #DDE1E3;
   --teal:       #0E6B66;
   --teal-deep:  #0A4E4A;
+  --teal-light: #6FBFB6;
   --gold:       #A87C2A;
+  --gold-light: #D9A94C;
 
   --measure: 36rem;
   --gutter-w: 13rem;
   --gap: 3rem;
 
   --step-0: 1.0625rem;
-  --step-1: 1.375rem;
-  --step-2: 1.875rem;
-  --step-3: 2.75rem;
-  --step-4: clamp(2.75rem, 7vw, 5.25rem);
+  --step-1: 1.3125rem;
+  --step-2: 1.75rem;
+  --step-3: 2.25rem;
+  --step-4: clamp(2.5rem, 5.5vw, 4rem);
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -41,7 +44,7 @@ body {
 }
 
 h1, h2, h3, h4,
-.nav, .gutter, .btn, .meta, .tag, .skills-grid dt {
+.nav, .gutter, .btn, .meta, .tag, .skills-grid dt, .stat {
   font-family: Archivo, 'Helvetica Neue', Arial, sans-serif;
 }
 
@@ -58,22 +61,16 @@ p:last-child { margin-bottom: 0; }
 a { color: var(--teal-deep); text-decoration-thickness: 1px; text-underline-offset: 2px; }
 a:hover { color: var(--ink); }
 
-:focus-visible {
-  outline: 2px solid var(--teal);
-  outline-offset: 3px;
-}
+:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
 
 /* ---------- Header ---------- */
 
-.site-header {
-  border-bottom: 1px solid var(--rule);
-  background: var(--paper);
-}
+.site-header { border-bottom: 1px solid var(--rule); background: var(--paper); }
 
 .header-inner {
   max-width: 72rem;
   margin: 0 auto;
-  padding: 1.5rem 1.75rem;
+  padding: 1.25rem 1.75rem;
   display: flex;
   flex-wrap: wrap;
   gap: 1rem 2rem;
@@ -90,13 +87,7 @@ a:hover { color: var(--ink); }
   text-decoration: none;
 }
 
-.nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  font-size: 0.9375rem;
-  font-weight: 500;
-}
+.nav { display: flex; flex-wrap: wrap; gap: 1.5rem; font-size: 0.9375rem; font-weight: 500; }
 
 .nav a {
   color: var(--ink-soft);
@@ -106,30 +97,23 @@ a:hover { color: var(--ink); }
 }
 
 .nav a:hover { color: var(--ink); }
-
-.nav a[aria-current="page"] {
-  color: var(--ink);
-  border-bottom-color: var(--teal);
-}
+.nav a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--teal); }
 
 /* ---------- The annotated grid ---------- */
+/* Every band on the page sits on the same two-column grid, so the
+   main column keeps one left edge from the hero to the footer. */
 
-.sheet {
-  max-width: 72rem;
-  margin: 0 auto;
-  padding: 0 1.75rem;
-}
+.sheet { max-width: 72rem; margin: 0 auto; padding: 0 1.75rem; }
 
 .row {
   display: grid;
   grid-template-columns: var(--gutter-w) minmax(0, var(--measure));
   gap: var(--gap);
-  padding: 3.5rem 0;
+  padding: 2.75rem 0;
   border-bottom: 1px solid var(--rule);
 }
 
 .row:last-child { border-bottom: 0; }
-
 .row > .main { grid-column: 2; }
 .row > .gutter { grid-column: 1; }
 
@@ -142,32 +126,89 @@ a:hover { color: var(--ink); }
   padding-top: 0.4rem;
 }
 
-.gutter .term {
-  display: block;
-  font-weight: 700;
-  color: var(--ink);
-  margin-bottom: 0.2rem;
-}
-
+.gutter .term { display: block; font-weight: 700; color: var(--ink); margin-bottom: 0.2rem; }
 .gutter .note + .note { margin-top: 1.5rem; }
 
-/* ---------- Hero ---------- */
+/* ---------- Dark band ---------- */
+/* One inverted band per page gives the scroll a rhythm and marks
+   the section that carries the most weight. */
 
-.hero { padding: 6rem 0 4.5rem; }
+.row-dark {
+  background: var(--dark);
+  color: #E8EDEC;
+  border-bottom: 0;
+  padding: 3.25rem 0;
+  position: relative;
+}
+
+.row-dark::before {
+  content: "";
+  position: absolute;
+  inset: 0 -50vw;
+  background: var(--dark);
+  z-index: -1;
+}
+
+.row-dark h2, .row-dark h3 { color: #fff; }
+.row-dark .sub { color: var(--teal-light); }
+.row-dark .gutter { color: #93A3A1; }
+.row-dark .gutter .term { color: #E8EDEC; }
+.row-dark a { color: var(--gold-light); }
+.row-dark a:hover { color: #fff; }
+
+.row-dark .btn-ghost { color: var(--gold-light); border-color: var(--gold-light); }
+.row-dark .btn-ghost:hover { background: var(--gold-light); color: var(--dark); }
+
+.row-dark figure { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.14); }
+.row-dark figure figcaption { color: #93A3A1; border-top-color: rgba(255,255,255,0.14); }
+.row-dark .figure-empty { color: #93A3A1; background: none; }
+
+/* ---------- Hero ---------- */
+/* The hero is a .row too, so the headline shares the main column's
+   left edge with everything below it. */
+
+.hero { padding: 4rem 0 3rem; }
 
 .hero h1 {
   font-size: var(--step-4);
   font-weight: 800;
   letter-spacing: -0.035em;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
 }
 
-.hero .lede {
-  font-size: var(--step-1);
-  line-height: 1.5;
-  max-width: 34rem;
-  margin-bottom: 2rem;
+.hero .lede { font-size: var(--step-1); line-height: 1.5; margin-bottom: 1.75rem; }
+
+/* ---------- Stat strip ---------- */
+/* Numbers from real projects. On a portfolio for someone who works
+   with data, the figures are the most honest thing to put on display. */
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem 2rem;
 }
+
+.stat { border-top: 2px solid var(--gold); padding-top: 0.75rem; }
+
+.stat b {
+  display: block;
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+.stat span {
+  display: block;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: var(--ink-soft);
+  margin-top: 0.35rem;
+}
+
+.row-dark .stat b { color: #fff; }
+.row-dark .stat span { color: #93A3A1; }
 
 /* ---------- Buttons ---------- */
 
@@ -177,7 +218,7 @@ a:hover { color: var(--ink); }
   display: inline-block;
   font-size: 0.9375rem;
   font-weight: 600;
-  padding: 0.7rem 1.4rem;
+  padding: 0.65rem 1.35rem;
   border-radius: 2px;
   text-decoration: none;
   border: 1.5px solid var(--teal-deep);
@@ -189,62 +230,31 @@ a:hover { color: var(--ink); }
 .btn-ghost { background: transparent; color: var(--teal-deep); }
 .btn-ghost:hover { background: var(--teal-deep); color: #fff; }
 
-/* ---------- Headings within content ---------- */
+/* ---------- Content headings ---------- */
 
-.main > h2 {
-  font-size: var(--step-2);
-  margin-bottom: 1.5rem;
-}
-
-.main > h3 {
-  font-size: var(--step-1);
-  margin: 2.5rem 0 0.6rem;
-}
-
+.main > h2 { font-size: var(--step-2); margin-bottom: 1.25rem; }
+.main > h3 { font-size: var(--step-1); margin: 2rem 0 0.5rem; }
 .main > h3:first-child { margin-top: 0; }
 
-.sub {
-  color: var(--ink-soft);
-  font-size: var(--step-0);
-  margin-bottom: 2rem;
-}
+.sub { color: var(--ink-soft); font-size: var(--step-0); margin-bottom: 1.75rem; }
 
-/* ---------- Entries (areas, research, experience) ---------- */
+/* ---------- Entries ---------- */
 
-.entry { margin-bottom: 2.5rem; }
+.entry { margin-bottom: 2rem; }
 .entry:last-child { margin-bottom: 0; }
-
-.entry h3 {
-  font-size: var(--step-1);
-  margin-bottom: 0.5rem;
-}
-
-.entry .meta {
-  font-size: 0.8125rem;
-  color: var(--ink-soft);
-  margin-bottom: 0.6rem;
-}
-
-.entry ul { margin: 0.6rem 0 0; padding-left: 1.1rem; }
-.entry li { margin-bottom: 0.4rem; }
+.entry h3 { font-size: var(--step-1); margin-bottom: 0.45rem; }
+.entry .meta { font-size: 0.8125rem; color: var(--ink-soft); margin-bottom: 0.5rem; }
+.entry ul { margin: 0.5rem 0 0; padding-left: 1.1rem; }
+.entry li { margin-bottom: 0.35rem; }
 
 /* ---------- Featured project ---------- */
 
-.featured {
-  border-left: 3px solid var(--gold);
-  padding-left: 1.5rem;
-}
-
-.featured h2 { margin-bottom: 0.75rem; }
+.featured { border-left: 3px solid var(--gold); padding-left: 1.5rem; }
+.featured h2 { margin-bottom: 0.6rem; }
 
 /* ---------- Figures ---------- */
 
-figure {
-  margin: 0 0 2rem;
-  background: var(--surface);
-  border: 1px solid var(--rule);
-}
-
+figure { margin: 0 0 1.75rem; background: var(--surface); border: 1px solid var(--rule); }
 figure img { display: block; width: 100%; height: auto; }
 
 figure figcaption {
@@ -252,7 +262,7 @@ figure figcaption {
   font-size: 0.8125rem;
   line-height: 1.5;
   color: var(--ink-soft);
-  padding: 0.75rem 1rem;
+  padding: 0.7rem 1rem;
   border-top: 1px solid var(--rule);
 }
 
@@ -273,41 +283,30 @@ figure figcaption {
 
 /* ---------- Project index ---------- */
 
-.project-group { margin-bottom: 3rem; }
+.project-group { margin-bottom: 2.5rem; }
 .project-group:last-child { margin-bottom: 0; }
 
 .project-group > h3 {
   font-size: 0.9375rem;
   font-weight: 700;
   color: var(--teal-deep);
-  margin-bottom: 1rem;
-  padding-bottom: 0.4rem;
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.35rem;
   border-bottom: 1px solid var(--rule);
 }
 
 .project-item {
   display: block;
-  padding: 1.1rem 0;
+  padding: 1rem 0;
   border-bottom: 1px solid var(--rule);
   text-decoration: none;
   color: inherit;
 }
 
 .project-item:last-child { border-bottom: 0; }
-
-.project-item h4 {
-  font-size: 1.125rem;
-  margin-bottom: 0.3rem;
-  color: var(--teal-deep);
-}
-
+.project-item h4 { font-size: 1.125rem; margin-bottom: 0.25rem; color: var(--teal-deep); }
 .project-item:hover h4 { color: var(--ink); }
-
-.project-item p {
-  margin: 0;
-  font-size: 0.9375rem;
-  color: var(--ink-soft);
-}
+.project-item p { margin: 0; font-size: 0.9375rem; color: var(--ink-soft); }
 
 .tag {
   display: inline-block;
@@ -326,7 +325,7 @@ figure figcaption {
 .skills-grid {
   display: grid;
   grid-template-columns: 9rem minmax(0, 1fr);
-  gap: 0.5rem 1.5rem;
+  gap: 0.45rem 1.5rem;
   margin: 0;
   font-size: 0.9375rem;
 }
@@ -336,37 +335,22 @@ figure figcaption {
 
 /* ---------- Contact list ---------- */
 
-.contact-list {
-  list-style: none;
-  margin: 0 0 2rem;
-  padding: 0;
-  font-size: var(--step-1);
-}
-
-.contact-list li {
-  padding: 0.7rem 0;
-  border-bottom: 1px solid var(--rule);
-}
+.contact-list { list-style: none; margin: 0 0 1.75rem; padding: 0; font-size: var(--step-1); }
+.contact-list li { padding: 0.65rem 0; border-bottom: 1px solid var(--rule); }
 
 /* ---------- Placeholder marker — delete these before publishing ---------- */
 
-.todo {
-  background: #FFF6DF;
-  border-bottom: 1.5px solid var(--gold);
-  padding: 0 0.15em;
-}
+.todo { background: #FFF6DF; border-bottom: 1.5px solid var(--gold); padding: 0 0.15em; }
+.row-dark .todo { background: #4A3D1E; color: #F0E4C4; }
 
 /* ---------- Footer ---------- */
 
-.site-footer {
-  border-top: 1px solid var(--rule);
-  margin-top: 2rem;
-}
+.site-footer { border-top: 1px solid var(--rule); margin-top: 1.5rem; }
 
 .footer-inner {
   max-width: 72rem;
   margin: 0 auto;
-  padding: 2rem 1.75rem 3rem;
+  padding: 1.75rem 1.75rem 2.5rem;
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem 2rem;
@@ -378,7 +362,6 @@ figure figcaption {
 
 .footer-inner a { color: var(--ink-soft); }
 .footer-inner a:hover { color: var(--ink); }
-
 .footer-links { display: flex; flex-wrap: wrap; gap: 1.25rem; }
 
 /* ---------- Narrow screens: the margin folds into the flow ---------- */
@@ -386,23 +369,20 @@ figure figcaption {
 @media (max-width: 56rem) {
   :root { --gap: 0; }
 
-  .row {
-    grid-template-columns: minmax(0, 1fr);
-    padding: 2.75rem 0;
-  }
-
-  .row > .main,
-  .row > .gutter { grid-column: 1; }
+  .row { grid-template-columns: minmax(0, 1fr); padding: 2.25rem 0; }
+  .row > .main, .row > .gutter { grid-column: 1; }
 
   .row > .gutter {
     order: 2;
-    margin-top: 2rem;
+    margin-top: 1.75rem;
     padding: 0 0 0 1rem;
     border-left: 2px solid var(--rule);
   }
 
-  .hero { padding: 3.5rem 0 2.5rem; }
+  .row-dark > .gutter { border-left-color: rgba(255,255,255,0.2); }
 
+  .hero { padding: 2.75rem 0 2rem; }
+  .stats { grid-template-columns: minmax(0, 1fr); gap: 1.25rem; }
   .skills-grid { grid-template-columns: minmax(0, 1fr); gap: 0.15rem; }
   .skills-grid dd { margin-bottom: 0.9rem; }
 }

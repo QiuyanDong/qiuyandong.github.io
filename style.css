@@ -1,0 +1,412 @@
+/* ============================================================
+   Ann Dong — Data Science Portfolio
+   Layout concept: an annotated page. The narrow left column is a
+   real margin for definitions, figure captions, and metadata, so
+   specialised terms get explained without interrupting the prose.
+   ============================================================ */
+
+:root {
+  --paper:      #F8F9FA;
+  --surface:    #FFFFFF;
+  --ink:        #14161A;
+  --ink-soft:   #5C6470;
+  --rule:       #DDE1E3;
+  --teal:       #0E6B66;
+  --teal-deep:  #0A4E4A;
+  --gold:       #A87C2A;
+
+  --measure: 36rem;
+  --gutter-w: 13rem;
+  --gap: 3rem;
+
+  --step-0: 1.0625rem;
+  --step-1: 1.375rem;
+  --step-2: 1.875rem;
+  --step-3: 2.75rem;
+  --step-4: clamp(2.75rem, 7vw, 5.25rem);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Newsreader, Georgia, 'Times New Roman', serif;
+  font-size: var(--step-0);
+  line-height: 1.65;
+  font-optical-sizing: auto;
+}
+
+h1, h2, h3, h4,
+.nav, .gutter, .btn, .meta, .tag, .skills-grid dt {
+  font-family: Archivo, 'Helvetica Neue', Arial, sans-serif;
+}
+
+h1, h2, h3, h4 {
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0;
+  font-weight: 700;
+}
+
+p { margin: 0 0 1.1em; }
+p:last-child { margin-bottom: 0; }
+
+a { color: var(--teal-deep); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+a:hover { color: var(--ink); }
+
+:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 3px;
+}
+
+/* ---------- Header ---------- */
+
+.site-header {
+  border-bottom: 1px solid var(--rule);
+  background: var(--paper);
+}
+
+.header-inner {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 1.5rem 1.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.wordmark {
+  font-family: Archivo, sans-serif;
+  font-weight: 800;
+  font-size: 1.0625rem;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+}
+
+.nav a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  padding-bottom: 2px;
+  border-bottom: 2px solid transparent;
+}
+
+.nav a:hover { color: var(--ink); }
+
+.nav a[aria-current="page"] {
+  color: var(--ink);
+  border-bottom-color: var(--teal);
+}
+
+/* ---------- The annotated grid ---------- */
+
+.sheet {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 0 1.75rem;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: var(--gutter-w) minmax(0, var(--measure));
+  gap: var(--gap);
+  padding: 3.5rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.row:last-child { border-bottom: 0; }
+
+.row > .main { grid-column: 2; }
+.row > .gutter { grid-column: 1; }
+
+/* Gutter notes: real information, not decoration. */
+.gutter {
+  font-family: Archivo, sans-serif;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  padding-top: 0.4rem;
+}
+
+.gutter .term {
+  display: block;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 0.2rem;
+}
+
+.gutter .note + .note { margin-top: 1.5rem; }
+
+/* ---------- Hero ---------- */
+
+.hero { padding: 6rem 0 4.5rem; }
+
+.hero h1 {
+  font-size: var(--step-4);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  margin-bottom: 1.5rem;
+}
+
+.hero .lede {
+  font-size: var(--step-1);
+  line-height: 1.5;
+  max-width: 34rem;
+  margin-bottom: 2rem;
+}
+
+/* ---------- Buttons ---------- */
+
+.btn-row { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+
+.btn {
+  display: inline-block;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  padding: 0.7rem 1.4rem;
+  border-radius: 2px;
+  text-decoration: none;
+  border: 1.5px solid var(--teal-deep);
+}
+
+.btn-solid { background: var(--teal-deep); color: #fff; }
+.btn-solid:hover { background: var(--ink); border-color: var(--ink); color: #fff; }
+
+.btn-ghost { background: transparent; color: var(--teal-deep); }
+.btn-ghost:hover { background: var(--teal-deep); color: #fff; }
+
+/* ---------- Headings within content ---------- */
+
+.main > h2 {
+  font-size: var(--step-2);
+  margin-bottom: 1.5rem;
+}
+
+.main > h3 {
+  font-size: var(--step-1);
+  margin: 2.5rem 0 0.6rem;
+}
+
+.main > h3:first-child { margin-top: 0; }
+
+.sub {
+  color: var(--ink-soft);
+  font-size: var(--step-0);
+  margin-bottom: 2rem;
+}
+
+/* ---------- Entries (areas, research, experience) ---------- */
+
+.entry { margin-bottom: 2.5rem; }
+.entry:last-child { margin-bottom: 0; }
+
+.entry h3 {
+  font-size: var(--step-1);
+  margin-bottom: 0.5rem;
+}
+
+.entry .meta {
+  font-size: 0.8125rem;
+  color: var(--ink-soft);
+  margin-bottom: 0.6rem;
+}
+
+.entry ul { margin: 0.6rem 0 0; padding-left: 1.1rem; }
+.entry li { margin-bottom: 0.4rem; }
+
+/* ---------- Featured project ---------- */
+
+.featured {
+  border-left: 3px solid var(--gold);
+  padding-left: 1.5rem;
+}
+
+.featured h2 { margin-bottom: 0.75rem; }
+
+/* ---------- Figures ---------- */
+
+figure {
+  margin: 0 0 2rem;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+}
+
+figure img { display: block; width: 100%; height: auto; }
+
+figure figcaption {
+  font-family: Archivo, sans-serif;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  padding: 0.75rem 1rem;
+  border-top: 1px solid var(--rule);
+}
+
+.figure-empty {
+  aspect-ratio: 16 / 9;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  text-align: center;
+  font-family: Archivo, sans-serif;
+  font-size: 0.875rem;
+  color: var(--ink-soft);
+  background: repeating-linear-gradient(
+    45deg, transparent, transparent 10px,
+    rgba(0,0,0,0.02) 10px, rgba(0,0,0,0.02) 20px
+  );
+}
+
+/* ---------- Project index ---------- */
+
+.project-group { margin-bottom: 3rem; }
+.project-group:last-child { margin-bottom: 0; }
+
+.project-group > h3 {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--teal-deep);
+  margin-bottom: 1rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.project-item {
+  display: block;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--rule);
+  text-decoration: none;
+  color: inherit;
+}
+
+.project-item:last-child { border-bottom: 0; }
+
+.project-item h4 {
+  font-size: 1.125rem;
+  margin-bottom: 0.3rem;
+  color: var(--teal-deep);
+}
+
+.project-item:hover h4 { color: var(--ink); }
+
+.project-item p {
+  margin: 0;
+  font-size: 0.9375rem;
+  color: var(--ink-soft);
+}
+
+.tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--gold);
+  border: 1px solid currentColor;
+  border-radius: 2px;
+  padding: 0.1rem 0.4rem;
+  margin-left: 0.5rem;
+  vertical-align: 2px;
+}
+
+/* ---------- Skills ---------- */
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: 9rem minmax(0, 1fr);
+  gap: 0.5rem 1.5rem;
+  margin: 0;
+  font-size: 0.9375rem;
+}
+
+.skills-grid dt { font-weight: 600; color: var(--ink); }
+.skills-grid dd { margin: 0; color: var(--ink-soft); }
+
+/* ---------- Contact list ---------- */
+
+.contact-list {
+  list-style: none;
+  margin: 0 0 2rem;
+  padding: 0;
+  font-size: var(--step-1);
+}
+
+.contact-list li {
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+/* ---------- Placeholder marker — delete these before publishing ---------- */
+
+.todo {
+  background: #FFF6DF;
+  border-bottom: 1.5px solid var(--gold);
+  padding: 0 0.15em;
+}
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+  border-top: 1px solid var(--rule);
+  margin-top: 2rem;
+}
+
+.footer-inner {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 2rem 1.75rem 3rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 2rem;
+  justify-content: space-between;
+  font-family: Archivo, sans-serif;
+  font-size: 0.875rem;
+  color: var(--ink-soft);
+}
+
+.footer-inner a { color: var(--ink-soft); }
+.footer-inner a:hover { color: var(--ink); }
+
+.footer-links { display: flex; flex-wrap: wrap; gap: 1.25rem; }
+
+/* ---------- Narrow screens: the margin folds into the flow ---------- */
+
+@media (max-width: 56rem) {
+  :root { --gap: 0; }
+
+  .row {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 2.75rem 0;
+  }
+
+  .row > .main,
+  .row > .gutter { grid-column: 1; }
+
+  .row > .gutter {
+    order: 2;
+    margin-top: 2rem;
+    padding: 0 0 0 1rem;
+    border-left: 2px solid var(--rule);
+  }
+
+  .hero { padding: 3.5rem 0 2.5rem; }
+
+  .skills-grid { grid-template-columns: minmax(0, 1fr); gap: 0.15rem; }
+  .skills-grid dd { margin-bottom: 0.9rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}

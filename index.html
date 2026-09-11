@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ann Dong — Data Science Portfolio</title>
-<meta name="description" content="Ann Dong is a data science student working across machine learning, statistics, and computational biology.">
+<meta name="description" content="Ann Dong is a data science student working across machine learning, statistics, and connectomics.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
@@ -29,30 +29,35 @@
 <main class="sheet">
 
   <section class="row hero">
-  <div class="gutter"></div>
-  <div class="main">
-    <h1>Hi, I'm Ann.</h1>
-    <p class="lede">I'm a data science student working at the intersection of machine
-      learning, statistics, and computational biology. This is where my work lives —
-      the models, the analysis, and the thinking behind both.</p>
-    <div class="btn-row">
-      <a class="btn btn-solid" href="projects.html">See my work</a>
-      <a class="btn btn-ghost" href="contact.html">Get in touch</a>
+    <div class="gutter"></div>
+    <div class="main">
+      <h1>Hi, I'm Ann.</h1>
+      <p class="lede">I'm a data science student working at the intersection of machine
+        learning, statistics, and computational biology. This is where my work lives —
+        the models, the analysis, and the thinking behind both.</p>
+      <div class="btn-row">
+        <a class="btn btn-solid" href="projects.html">See my work</a>
+        <a class="btn btn-ghost" href="contact.html">Get in touch</a>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
   <section class="row">
     <div class="gutter">
       <p class="note">
-        <span class="term">Transformer</span>
-        The neural network architecture behind most modern language models. It works by
-        letting the model weigh every part of an input against every other part.
+        <span class="term">Supervised classification</span>
+        Training a model on examples where the correct answer is already known, so it
+        can label new cases it hasn't seen.
       </p>
       <p class="note">
-        <span class="term">Connectomics</span>
-        The study of complete wiring diagrams of nervous systems — which neuron connects
-        to which, and how.
+        <span class="term">ARIMA</span>
+        A time-series model that forecasts a value from its own past values and its own
+        past errors.
+      </p>
+      <p class="note">
+        <span class="term">Connectome</span>
+        A complete map of the connections in a nervous system, reconstructed from
+        stacked electron microscope images.
       </p>
     </div>
     <div class="main">
@@ -61,31 +66,30 @@
 
       <div class="entry">
         <h3>AI and machine learning</h3>
-        <p>Most of my machine learning work is supervised classification and
-          forecasting on real measurement data — SVMs and tree ensembles for species
-          classification, and XGBoost, LSTM, and CNN models for marine climate
-          prediction during an internship. More recently I've been building with
-          language models rather than on them: I put together an agent workflow that
-          turns a product's bill of materials into a life-cycle carbon footprint
-          report.</p>
+        <p>Most of my machine learning work is supervised classification and forecasting
+          on real measurement data — SVMs and tree ensembles for species classification,
+          and XGBoost, LSTM, and CNN models for marine climate prediction during an
+          internship. More recently I've been building with language models rather than
+          on them: I put together an agent workflow that turns a product's bill of
+          materials into a life-cycle carbon footprint report.</p>
       </div>
 
       <div class="entry">
         <h3>Data science and statistics</h3>
-        <p>Experimental design, honest uncertainty, and visualisations that don't
-          lie by omission. I've fitted ARIMA models to atmospheric CO₂ and global
-          temperature records, then regressed on the residuals to catch structure the
-          first model missed. This is the unglamorous half of the field, and the half
-          that decides whether the other half means anything.</p>
+        <p>Experimental design, honest uncertainty, and visualisations that don't lie by
+          omission. I've fitted ARIMA models to atmospheric CO₂ and global temperature
+          records, then regressed on the residuals to catch structure the first model
+          missed. This is the unglamorous half of the field, and the half that decides
+          whether the other half means anything.</p>
       </div>
 
       <div class="entry">
         <h3>Connectomics</h3>
         <p>I proofread neuron reconstructions in electron microscopy connectomes —
-        following a cell's shape slice by slice to decide whether an algorithm
-        fused two neurons into one or broke one into pieces. It's slow work with
-        an unusually direct payoff: every circuit-level analysis built on this
-        data inherits whatever I get wrong.</p>
+          following a cell's shape slice by slice to decide whether an algorithm fused
+          two neurons into one or broke one into pieces. It's slow work with an
+          unusually direct payoff: every circuit-level analysis built on this data
+          inherits whatever I get wrong.</p>
       </div>
     </div>
   </section>
@@ -93,19 +97,25 @@
   <section class="row row-dark">
     <div class="gutter">
       <p class="note">
-        <span class="term">ARIMA</span>
-        A time-series model that forecasts a value from its own past values and
-        its own past errors.
+        <span class="term">Functional unit</span>
+        1 kWh delivered to the grid. Dividing every emission by lifetime generation is
+        what makes turbines of different sizes comparable at all.
       </p>
       <p class="note">
-        <span class="term">Connectome</span>
-        A complete map of the connections in a nervous system, reconstructed from
-        stacked electron microscope images.
+        <span class="term">Bill of materials (BOM)</span>
+        The list of what a product is made of and how much of each material — here,
+        tonnes of steel, copper, and composites.
       </p>
+    </div>
+    <div class="main">
+      <h2>The one project I'd show you first</h2>
+      <p class="sub">An LLM agent workflow that turns a bill of materials into a
+        life-cycle carbon footprint report</p>
+
       <div class="stats">
-        <div class="stat"><b>14</b><span>nodes alternating code and LLM</span></div>
-        <div class="stat"><b>6.99</b><span>g CO₂-e/kWh reproduced</span></div>
-        <div class="stat"><b>55%</b><span>of emissions traced to steel</span></div>
+        <div class="stat"><b>14</b><span>workflow nodes</span></div>
+        <div class="stat"><b>6.99</b><span>g&nbsp;CO₂-e/kWh reproduced</span></div>
+        <div class="stat"><b>55%</b><span>of emissions from steel</span></div>
       </div>
 
       <p style="margin-top:1.75rem">Life-cycle assessment is slow, specialist work, and
@@ -125,8 +135,8 @@
     <div class="gutter"></div>
     <div class="main">
       <h2>Who I'd like to hear from</h2>
-      <p>I'm looking for a summer 2027 internship in data science, analytics,
-        or business analytics, and I'm always glad to talk to people working on
+      <p>I'm looking for a summer 2027 internship in data science, analytics, or
+        business analytics, and I'm always glad to talk to people working on
         optimization, forecasting, or environmental data.</p>
       <div class="btn-row">
         <a class="btn btn-solid" href="contact.html">Get in touch</a>

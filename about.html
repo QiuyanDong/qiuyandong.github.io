@@ -36,48 +36,45 @@
   </section>
 
   <section class="row">
-    <div class="gutter">
-      <p class="note">
-        <span class="term">Photo</span>
-        This is the one place on the site for a picture of you. Natural light, plain
-        background, chest up. A phone portrait taken by a friend near a window is
-        completely fine. No photo you like? Delete the figure block — a missing photo
-        costs less than a bad one.
-      </p>
-    </div>
+    <div class="gutter"></div>
     <div class="main">
       <figure>
         <img src="ann.jpg" alt="Ann Dong">
       </figure>
 
-      <p>I'm Ann Dong, a third-year student at UC Santa Barbara studying Statistics and 
+      <p>I'm Ann Dong, a third-year student at UC Santa Barbara studying Statistics and
         Data Science.</p>
 
-      <p>I came to data science through math, and specifically through
-        mathematical modeling. Building models taught me something I hadn't
-        expected: the model is rarely the hard part. The data is — how it was
-        collected, what it leaves out, and whether it can support the question
-        you're asking at all. What keeps me here is narrower than a general
-        interest in data: I like the point where a messy, uncooperative dataset
-        finally resolves into something you can say out loud, and I like being
-        the person who explains it to someone who wasn't in the room.</p>
+      <p>I came to data science through math, and specifically through mathematical
+        modeling. Building models taught me something I hadn't expected: the model is
+        rarely the hard part. The data is — how it was collected, what it leaves out,
+        and whether it can support the question you're asking at all. What keeps me
+        here is narrower than a general interest in data: I like the point where a
+        messy, uncooperative dataset finally resolves into something you can say out
+        loud, and I like being the person who explains it to someone who wasn't in the
+        room.</p>
 
-      <p>I draw and I skate — quiet, absorbing things, which is also how I'd describe 
-        a good afternoon with a dataset.</p>
+      <p>I draw and I skate — quiet, absorbing things, which is also how I'd describe a
+        good afternoon with a dataset.</p>
     </div>
   </section>
 
   <section class="row">
     <div class="gutter">
       <p class="note">
-        <span class="term">Data-ink ratio</span>
-        Edward Tufte's idea that the proportion of a chart's ink devoted to actual data
-        should be as high as possible. Everything else is a candidate for deletion.
+        <span class="term">ARIMA</span>
+        A time-series model that forecasts a value from its own past values and its own
+        past errors.
       </p>
       <p class="note">
-        <span class="term">High-dimensional</span>
-        Data with many measured variables per observation — often far more variables
-        than samples, which breaks a lot of standard statistical intuition.
+        <span class="term">Sensitivity analysis</span>
+        Deliberately nudging a model's inputs to see how far the answer moves. A result
+        that survives this is worth more than one that doesn't.
+      </p>
+      <p class="note">
+        <span class="term">Merge and split errors</span>
+        The two ways an automated reconstruction goes wrong: fusing two neurons into
+        one, or breaking a single neuron into fragments.
       </p>
     </div>
     <div class="main">
@@ -86,38 +83,36 @@
 
       <div class="entry">
         <h3>Artificial intelligence and machine learning</h3>
-        <p>Most of my machine learning work has been supervised classification on
-          real, imperfect measurement data. In a biodiversity project I compared
-          support vector machines, AdaBoost, and random forests on morphometric
-          data — body measurements — to distinguish eight lizard species, reaching
-          99.82% accuracy on species separation. The interesting part wasn't the
-          headline number. It was working out which measurements actually carried
-          the signal, and how much of the remaining error belonged to the data
-          rather than the model.</p>
+        <p>Most of my machine learning work has been supervised classification on real,
+          imperfect measurement data. In a biodiversity project I compared support
+          vector machines, AdaBoost, and random forests on morphometric data — body
+          measurements — to distinguish eight lizard species, reaching 99.82% accuracy
+          on species separation. The interesting part wasn't the headline number. It was
+          working out which measurements actually carried the signal, and how much of
+          the remaining error belonged to the data rather than the model.</p>
       </div>
 
       <div class="entry">
         <h3>Data science and statistical modeling</h3>
-        <p>This is where most of my time goes. I work with time series and
-          regression — fitting ARIMA models to atmospheric CO₂ and global
-          temperature records, then regressing on the residuals to catch structure
-          the first model missed. That project reached an R² of 0.999 and a Pearson
-          correlation of 0.961 between CO₂ and temperature. But the number I trust
-          more came out of the sensitivity analysis: how far the forecast moved
-          when I perturbed the parameters.</p>
+        <p>This is where most of my time goes. I work with time series and regression —
+          fitting ARIMA models to atmospheric CO₂ and global temperature records, then
+          regressing on the residuals to catch structure the first model missed. That
+          project reached an R² of 0.999 and a Pearson correlation of 0.961 between CO₂
+          and temperature. But the number I trust more came out of the sensitivity
+          analysis: how far the forecast moved when I perturbed the parameters.</p>
+      </div>
 
       <div class="entry">
-        <h3>Computational biology and biomedical data analysis</h3>
+        <h3>Connectomics</h3>
         <p>I proofread neuron reconstructions in electron microscopy connectomes.
-          Segmentation algorithms trace neurons through stacked EM images
-          automatically, and they make two characteristic mistakes: merge errors,
-          where two separate neurons get fused into one, and split errors, where a
-          single neuron is broken into fragments. Correcting them means following a
-          cell's shape slice by slice through the volume and deciding, from the
-          continuity of its processes, whether two pieces are the same neuron.
-          Working in CAVE and Neuroglancer, I proofread eight anatomical regions
-          across two reconstruction versions and helped identify neurons that
-          hadn't been correctly mapped before.</p>
+          Segmentation algorithms trace neurons through stacked EM images automatically,
+          and they make two characteristic mistakes: merge errors, where two separate
+          neurons get fused into one, and split errors, where a single neuron is broken
+          into fragments. Correcting them means following a cell's shape slice by slice
+          through the volume and deciding, from the continuity of its processes, whether
+          two pieces are the same neuron. Working in CAVE and Neuroglancer, I proofread
+          eight anatomical regions across two reconstruction versions and helped
+          identify neurons that hadn't been correctly mapped before.</p>
       </div>
     </div>
   </section>
@@ -125,36 +120,40 @@
   <section class="row">
     <div class="gutter">
       <p class="note">
-        <span class="term">Present tense</span>
-        Write this section as live work rather than finished summary. Research in
-        progress is more interesting to an advisor than research packaged as complete.
+        <span class="term">CAVE and Neuroglancer</span>
+        The tools used to view and correct connectome reconstructions — CAVE tracks
+        versioned annotations, Neuroglancer renders the image volume.
+      </p>
+      <p class="note">
+        <span class="term">Circuit-level analysis</span>
+        Studying how signals move through a group of connected neurons, rather than
+        looking at any single cell on its own.
       </p>
     </div>
     <div class="main">
-      <h2>What I'm researching right now</h2>
+      <h2>What I'm working on right now</h2>
 
       <div class="entry">
         <h3>Connectomics annotation</h3>
-        <p>The reconstructions I proofread feed into circuit-level analysis —
-          questions about how information actually moves through a nervous system.
-          That analysis is only as good as the wiring diagram underneath it, and a
-          single unresolved merge error can invent a connection that doesn't exist.
-          I'm continuing to proofread and to help recover neurons that earlier
-          passes missed, which is slow work with an unusually direct payoff:
-          everything built on top of this data inherits whatever I get wrong.</p>
+        <p>The reconstructions I proofread feed into circuit-level analysis — questions
+          about how information actually moves through a nervous system. That analysis
+          is only as good as the wiring diagram underneath it, and a single unresolved
+          merge error can invent a connection that doesn't exist. I'm continuing to
+          proofread and to help recover neurons that earlier passes missed, which is
+          slow work with an unusually direct payoff: everything built on top of this
+          data inherits whatever I get wrong.</p>
       </div>
 
       <div class="entry">
         <h3>LLM agent workflows</h3>
-        <p>I built an agent workflow that turns a wind turbine's bill of
-        materials into a full life-cycle carbon footprint report — 14 nodes
-        alternating between code nodes that compute and LLM nodes that extract
-        and write. The platform wouldn't pass data directly between code nodes,
-        so the LLM nodes double as typed data couriers, each one instructed to
-        reserialise its input as JSON without altering a single number. That
-        constraint shaped the whole architecture, and it's also the main risk:
-        a language model sitting in the middle of a numerical pipeline is a
-        place where digits can quietly change.</p>
+        <p>I built an agent workflow that turns a wind turbine's bill of materials into
+          a full life-cycle carbon footprint report — 14 nodes alternating between code
+          nodes that compute and LLM nodes that extract and write. The platform wouldn't
+          pass data directly between code nodes, so the LLM nodes double as typed data
+          couriers, each one instructed to reserialise its input as JSON without
+          altering a single number. That constraint shaped the whole architecture, and
+          it's also the main risk: a language model sitting in the middle of a numerical
+          pipeline is a place where digits can quietly change.</p>
       </div>
     </div>
   </section>
@@ -163,17 +162,15 @@
     <div class="gutter"></div>
     <div class="main">
       <h2>Where I'm headed</h2>
-      <p>Near term, I'm looking for a summer 2027 internship in data science,
-        analytics, or business analytics. What I want out of it is a problem
-        where the data is messy enough that cleaning it is part of the work, and
-        where somebody downstream actually acts on the answer — the kind of
-        setting where a model's honest uncertainty matters more than its headline
-        score.</p>
-
-      <p>Longer term I plan to go to graduate school, most likely in DATA SCIENCE. 
-        The problems that keep pulling me back are the ones where a
-        real decision has to be made under constraints somebody else set, and
-        where the honest answer is a range rather than a number.</p>
+      <p>Near term, I'm looking for a summer 2027 internship in data science, analytics,
+        or business analytics. What I want out of it is a problem where the data is
+        messy enough that cleaning it is part of the work, and where somebody downstream
+        actually acts on the answer — the kind of setting where a model's honest
+        uncertainty matters more than its headline score.</p>
+      <p>Longer term I plan to go to graduate school, most likely in data science. The
+        problems that keep pulling me back are the ones where a real decision has to be
+        made under constraints somebody else set, and where the honest answer is a range
+        rather than a number.</p>
       <div class="btn-row">
         <a class="btn btn-solid" href="resume.html">See my resume</a>
         <a class="btn btn-ghost" href="projects.html">See my work</a>

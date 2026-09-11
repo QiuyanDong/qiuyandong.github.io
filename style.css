@@ -364,6 +364,11 @@ figure figcaption {
 .footer-inner a:hover { color: var(--ink); }
 .footer-links { display: flex; flex-wrap: wrap; gap: 1.25rem; }
 
+/* Pages with no margin notes: content uses the full measure */
+.plain .row { grid-template-columns: minmax(0, 44rem); }
+.plain .row > .main { grid-column: 1; }
+.plain .row > .gutter { display: none; }
+
 /* ---------- Narrow screens: the margin folds into the flow ---------- */
 
 @media (max-width: 56rem) {

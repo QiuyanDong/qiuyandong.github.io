@@ -54,12 +54,10 @@
     </div>
     <div class="main">
       <figure>
-        <div class="figure-empty">CO₂ concentration, observed 1959–2021 and projected to 2100,
-          with the ARIMA confidence band. Save as <code>images/project-4.png</code> and replace
-          this block with an <code>&lt;img&gt;</code> tag.</div>
-        <figcaption>The observed record is the tight curve on the left. The widening band to
-          the right is the honest part of the chart — the projection's uncertainty grows faster
-          than its central estimate.</figcaption>
+        <img src="images/project-4.svg" alt="CO2 concentration observed from 1959 to 2021 and projected by ARIMA to 2100, reaching 497.97 ppm in 2050 and 770.57 in 2100, with a reliability boundary drawn at roughly 470 ppm and 2040.">
+        <figcaption>The observed record is the solid curve on the left. The shaded region past
+          2040 is the honest part of the chart — beyond it the correlation model diverges from
+          the independent forecasts and I do not treat it as reliable.</figcaption>
       </figure>
     </div>
   </section>
@@ -128,9 +126,10 @@
   <section class="row">
     <div class="gutter">
       <p class="note">
-        <span class="term">Second figure</span>
-        The CO₂–temperature scatter with the fitted relationship, before and after the
-        residual correction. Delete this block if you don't have it.
+        <span class="term">Agreement as evidence</span>
+        Two models reaching the same answer by different assumptions is worth more than either
+        model's fit statistic. It is also the only external check available when the thing
+        being predicted has not happened yet.
       </p>
     </div>
     <div class="main">
@@ -152,9 +151,10 @@
         statement than a 2100 number quoted to two decimal places.</p>
 
       <figure>
-        <div class="figure-empty">Optional second figure —
-          <code>images/project-4-results.png</code></div>
-        <figcaption><span class="todo">[Caption.]</span></figcaption>
+        <img src="images/project-4-results.svg" alt="Threshold crossing years by model: ARIMA and quadratic regression agree on 2030 to 2031, 2038 and 2052, linear regression is consistently later, and the neural network reaches only the first threshold.">
+        <figcaption>ARIMA and quadratic regression land on the same year for both upper
+          thresholds. The neural network, which fits the observed record best of the four,
+          never reaches them at all.</figcaption>
       </figure>
     </div>
   </section>

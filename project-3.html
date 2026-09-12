@@ -52,12 +52,10 @@
     </div>
     <div class="main">
       <figure>
-        <div class="figure-empty">Confusion matrix for the integrated model across all eight
-          species. Save as <code>images/project-3.png</code> and replace this block with an
-          <code>&lt;img&gt;</code> tag.</div>
-        <figcaption>Rows are the true species, columns the predicted one. The diagonal is
-          correct calls; everything off it shows which species get mistaken for which — and
-          those confusions are not symmetric.</figcaption>
+        <img src="images/project-3.svg" alt="Accuracy by task: the SVM baseline in grey against the targeted alternative model in gold, across seven classification tasks.">
+        <figcaption>Grey is the SVM baseline, gold the targeted alternative where I built one.
+          The three tasks with two bars are the ones where switching method beat tuning the
+          method I already had.</figcaption>
       </figure>
     </div>
   </section>
@@ -132,9 +130,10 @@
   <section class="row">
     <div class="gutter">
       <p class="note">
-        <span class="term">Second figure</span>
-        Variable importance from the Random Forest — one bar dominates the rest. Delete this
-        block if you don't have it.
+        <span class="term">Recall</span>
+        Of all the animals that really were male, the share the model called male. Accuracy
+        averages over the classes and can look high while one class is being missed badly;
+        recall is reported per class and cannot hide that.
       </p>
     </div>
     <div class="main">
@@ -152,9 +151,10 @@
         where extra features are mostly noise.</p>
 
       <figure>
-        <div class="figure-empty">Optional second figure —
-          <code>images/project-3-results.png</code></div>
-        <figcaption><span class="todo">[Caption.]</span></figcaption>
+        <img src="images/project-3-results.svg" alt="Two by two confusion matrix for the sex classifier: 71 and 80 correct, 14 and 5 wrong, with per-class recall of 83.5 and 94.1 percent against an overall accuracy of 88.82 percent.">
+        <figcaption>The same result read two ways. One accuracy figure of 88.82% conceals a
+          ten-point gap between the classes — and this is the balanced task, where the gap is
+          smallest.</figcaption>
       </figure>
     </div>
   </section>

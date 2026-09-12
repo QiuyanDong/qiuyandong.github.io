@@ -53,12 +53,10 @@
     </div>
     <div class="main">
       <figure>
-        <div class="figure-empty">The parcel segmented into ten zones, A–J, from six overlaid
-          suitability maps. Save as <code>images/project-5.png</code> and replace this block
-          with an <code>&lt;img&gt;</code> tag.</div>
-        <figcaption>Each zone has its own profile — water, slope, soil, signal, vegetation,
-          access — so the planning question becomes which of seven building types goes in each
-          of ten places, rather than what to do with a blank rectangle.</figcaption>
+        <img src="images/project-5.svg" alt="The three-stage pipeline: six indicators become heat maps, are thresholded and cleaned, then overlaid to cut the parcel into ten zones; any zoning plan is scored on economic, environmental and community value with AHP weights; a genetic algorithm searches the combinations using that score as fitness.">
+        <figcaption>Three stages, coarse to fine. The first one is what makes the third one
+          possible: segmenting the land into ten zones turns an intractable search over a pixel
+          grid into a search over ten choices.</figcaption>
       </figure>
     </div>
   </section>
@@ -132,9 +130,9 @@
   <section class="row">
     <div class="gutter">
       <p class="note">
-        <span class="term">Second figure</span>
-        The top two plans side by side, with their fitness scores. Delete this block if you
-        don't have it.
+        <span class="term">Read the margin, not the ranking</span>
+        A 0.2% gap between first and second place is the model telling you it cannot
+        discriminate. The sensitivity analysis is where the real finding is.
       </p>
     </div>
     <div class="main">
@@ -156,9 +154,10 @@
         traffic pollution — enough to change the optimal mix.</p>
 
       <figure>
-        <div class="figure-empty">Optional second figure —
-          <code>images/project-5-results.png</code></div>
-        <figcaption><span class="todo">[Caption.]</span></figcaption>
+        <img src="images/project-5-results.svg" alt="The best plan scores 2,833,942 and the runner-up 2,827,930, a gap of 0.2 percent. Under plus or minus five percent perturbation the layout holds against most parameters but changes outright for the five economic ones.">
+        <figcaption>Left, the near-tie at the top of the ranking. Right, the parameters that
+          actually decide the answer — all five of them economic, and all five compiled by us
+          rather than sourced.</figcaption>
       </figure>
     </div>
   </section>

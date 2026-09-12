@@ -54,13 +54,10 @@
     </div>
     <div class="main">
       <figure>
-        <div class="figure-empty">A generated timetable in the prototype interface, with room
-          assignments and movement between sessions. Save as
-          <code>images/project-6.png</code> and replace this block with an
-          <code>&lt;img&gt;</code> tag.</div>
-        <figcaption>Four classes over five daily sessions. The schedule is legal by
-          construction — no double-booked room or teacher — and the interesting differences
-          between candidate schedules are in the soft criteria.</figcaption>
+        <img src="images/project-6.svg" alt="Hard constraints are enforced by conflict-resolution logic before scoring, so every candidate is a valid timetable; the eight soft criteria are scored in the fitness function instead of enforced.">
+        <figcaption>The schedule is legal by construction — a clash is repaired rather than
+          penalised, so no candidate is ever invalid. All the interesting difference between
+          candidates sits in the soft criteria below.</figcaption>
       </figure>
     </div>
   </section>
@@ -123,9 +120,10 @@
   <section class="row">
     <div class="gutter">
       <p class="note">
-        <span class="term">Second figure</span>
-        Fitness score by generation, or a before-and-after comparison of movement conflicts.
-        Delete this block if you don't have it.
+        <span class="term">Competing criteria</span>
+        Packing rooms fuller moves classes apart and raises walking distance; respecting
+        subject-time preferences constrains which rooms are free. No schedule maximises all
+        three.
       </p>
     </div>
     <div class="main">
@@ -142,11 +140,6 @@
         timetable but a set of them at different points on that trade-off, with the choice left
         to the person who has to defend it.</p>
 
-      <figure>
-        <div class="figure-empty">Optional second figure —
-          <code>images/project-6-results.png</code></div>
-        <figcaption><span class="todo">[Caption.]</span></figcaption>
-      </figure>
     </div>
   </section>
 

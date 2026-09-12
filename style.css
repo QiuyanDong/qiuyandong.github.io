@@ -390,3 +390,46 @@ figure figcaption {
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }
 }
+
+/* ============================================================
+   COLOUR REFRESH — paste this at the very end of style.css.
+   Colours only. No layout, spacing, type or structure is touched.
+   ============================================================ */
+
+:root {
+  /* The desk gets a faint teal-grey cast so it reads as a surface
+     rather than as off-white. The sheet stays pure white. */
+  --paper:   #ECF0EF;
+  --surface: #FFFFFF;
+
+  /* Slightly warmer, slightly deeper gold. Holds up better as small
+     bold text on white than the old value did. */
+  --gold:       #9A6F1E;
+  --gold-light: #E0B25C;
+}
+
+/* 1 — The page becomes an actual sheet on an actual desk.
+      This is the change that does most of the work. */
+.sheet { background: var(--surface); }
+
+/* 2 — Figures were white on white and had gone invisible.
+      Flip them to the tinted tone so they read as insets. */
+figure { background: var(--paper); }
+
+/* 3 — The left margin is a third of the page and was entirely grey.
+      Colouring just the term gives it life without noise. */
+.gutter .term { color: var(--teal-deep); }
+
+/* 4 — One accent per context. In the dark band gold now does all the
+      accenting, so the minty teal no longer competes with it. */
+.row-dark .sub { color: var(--gold-light); }
+
+/* 5 — Project links answer the cursor. Tint only, no movement. */
+.project-item:hover { background: rgba(14, 107, 102, 0.045); }
+
+/* 6 — Small warmth where nobody expects it. */
+::selection { background: #F6E4BC; color: var(--ink); }
+
+/* 7 — The dark band sits on white now, so soften its inner surfaces
+      a touch to keep figures and rules from looking cut out. */
+.row-dark figure { background: rgba(255, 255, 255, 0.05); }

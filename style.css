@@ -433,3 +433,13 @@ figure { background: var(--paper); }
 /* 7 — The dark band sits on white now, so soften its inner surfaces
       a touch to keep figures and rules from looking cut out. */
 .row-dark figure { background: rgba(255, 255, 255, 0.05); }
+
+/* ---------- 1 ---------- */
+
+.row-dark {
+  margin-inline: -1.75rem;
+  padding-inline: 1.75rem;
+}
+
+/* 失效的出血层，去掉免得以后误会 */
+.row-dark::before { content: none; }

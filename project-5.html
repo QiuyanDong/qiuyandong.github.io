@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Planning three square kilometres of land — Ann Dong</title>
+<meta name="description" content="A three-stage pipeline combining computer-vision map segmentation, multi-criteria evaluation with AHP, and a genetic algorithm for land-use planning.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="wordmark" href="index.html">Ann Dong</a>
+    <nav class="nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="resume.html">Resume</a>
+      <a href="projects.html" aria-current="page">Projects</a>
+      <a href="writing.html">Writing</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="sheet">
+
+  <section class="hero">
+    <h1>Planning three square kilometres of land</h1>
+    <p class="lede">Given an undeveloped parcel and seven things you could build on it, which
+      combination is best — when "best" has to mean money, environment and community at the
+      same time?</p>
+  </section>
+
+  <section class="row">
+    <div class="gutter">
+      <p class="note">
+        <span class="term">Tools</span>
+        Python, OpenCV, Analytic Hierarchy Process, genetic algorithm
+      </p>
+      <p class="note">
+        <span class="term">Timeframe</span>
+        Jul – Aug 2025
+      </p>
+      <p class="note">
+        <span class="term">Role</span>
+        <span class="todo">[Team — I owned the evaluation model and the genetic algorithm.
+        Confirm before publishing.]</span>
+      </p>
+    </div>
+    <div class="main">
+      <figure>
+        <div class="figure-empty">The parcel segmented into ten zones, A–J, from six overlaid
+          suitability maps. Save as <code>images/project-5.png</code> and replace this block
+          with an <code>&lt;img&gt;</code> tag.</div>
+        <figcaption>Each zone has its own profile — water, slope, soil, signal, vegetation,
+          access — so the planning question becomes which of seven building types goes in each
+          of ten places, rather than what to do with a blank rectangle.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="row">
+    <div class="gutter">
+      <p class="note">
+        <span class="term">Multi-criteria decision</span>
+        A choice where the objectives conflict and there is no single right answer — only
+        trade-offs that depend on whose priorities you encode.
+      </p>
+      <p class="note">
+        <span class="term">Genetic algorithm</span>
+        A search method borrowed from evolution: generate many candidate plans, score them,
+        keep the best, then mix and mutate those to make the next generation. Useful when the
+        number of possible plans is far too large to check exhaustively.
+      </p>
+    </div>
+    <div class="main">
+      <h2>What was the problem?</h2>
+      <p>A three-square-kilometre undeveloped parcel, seven candidate developments — solar
+        array, agrivoltaic farm, crop farm, grazing ranch, regenerative farm, cross-country
+        skiing facility, agritourism centre — and a decision that has to satisfy business
+        planners and the community at once.</p>
+      <p>Optimising for profit alone is the obvious trap: it damages the land and the community
+        rejects the plan, which costs the developer both reputation and long-run return. So the
+        objective has to combine economic, environmental and community value. That creates two
+        hard sub-problems. The land is not uniform, so "where" matters as much as "what" — and
+        with seven building types across the parcel the number of possible plans is far beyond
+        enumeration.</p>
+    </div>
+  </section>
+
+  <section class="row">
+    <div class="gutter">
+      <p class="note">
+        <span class="term">AHP</span>
+        Analytic Hierarchy Process: instead of assigning weights directly, you compare
+        objectives two at a time and derive the weights from those comparisons. It comes with a
+        consistency check that catches contradictory judgements.
+      </p>
+      <p class="note">
+        <span class="term">The decision I didn't take</span>
+        I did not hand the raw pixel grid to the genetic algorithm. Segmenting the map first
+        collapsed the search space to ten zones — the pipeline only became tractable because a
+        cheap step ran before the expensive one.
+      </p>
+    </div>
+    <div class="main">
+      <h2>What did I build?</h2>
+      <p>A three-stage pipeline, coarse to fine. First, segmentation: score the parcel on six
+        indicators — transport access, slope, signal coverage, soil fertility, water supply,
+        vegetation cover — render each as a heat map, threshold each to black and white, clean
+        up speckle with dilation and erosion, then overlay all six and cut along the boundaries.
+        That produced ten zones from 0.21 to 0.84 km², each with a describable character.</p>
+      <p>Second, evaluation: a weighted sum of economic, environmental and community terms.
+        Economic is a discounted cash-flow over short (five-year) and long (five-to-twenty-year)
+        horizons net of construction, labour, hardware and marketing costs; environmental
+        aggregates impacts on soil, water, biodiversity and air; community covers employment
+        and volunteering opportunity. Weights came from AHP pairwise comparisons, all of which
+        passed the consistency check.</p>
+      <p>Third, search: a genetic algorithm over zone-to-building assignments, with the
+        evaluation model as the fitness function. Each candidate plan is one assignment;
+        crossover swaps zones between two high-scoring plans, mutation reassigns a zone at
+        random. Because the parameters differ by both building type and zone, the fitness
+        function needed 1,120 values — seven building types × ten zones × sixteen parameters —
+        rather than one set applied everywhere.</p>
+    </div>
+  </section>
+
+  <section class="row">
+    <div class="gutter">
+      <p class="note">
+        <span class="term">Second figure</span>
+        The top two plans side by side, with their fitness scores. Delete this block if you
+        don't have it.
+      </p>
+    </div>
+    <div class="main">
+      <h2>What did I find?</h2>
+      <p>The best plan scored 2,833,942 on the fitness function; the runner-up scored
+        2,827,930. That gap is 0.2%, and it is the most important number in the project — it
+        says the model cannot really distinguish its top candidates. I picked between them on
+        a criterion outside the model: the runner-up fragmented single building types across
+        non-adjacent zones, which is impractical to build. Treating a 0.2% margin as a
+        meaningful ranking would have been the wrong read.</p>
+      <p>Sensitivity analysis was more decisive. Perturbing every parameter by ±5%, most had
+        little effect on the layout — but the economic parameters (unit labour cost, hardware
+        maintenance, short- and long-term unit benefit, marketing) changed the recommended plan
+        outright. So the plan is mostly a function of the cost assumptions, and those are the
+        figures a real client should be asked to supply. For the algorithm itself, mutation and
+        crossover rates barely mattered; initial population size did.</p>
+      <p>Re-running with a semiconductor plant built nearby shifted the answer as expected:
+        more local demand and revenue, but competition for labour driving wages up and more
+        traffic pollution — enough to change the optimal mix.</p>
+
+      <figure>
+        <div class="figure-empty">Optional second figure —
+          <code>images/project-5-results.png</code></div>
+        <figcaption><span class="todo">[Caption.]</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="row">
+    <div class="gutter">
+      <p class="note">
+        <span class="term">Why admit limits</span>
+        A near-tie at the top and self-collected parameters are the two facts that determine how
+        much weight this output can carry. Better to say them than let a reader find them.
+      </p>
+    </div>
+    <div class="main">
+      <h2>What would I do differently?</h2>
+      <p>The 1,120 parameters were compiled by us from mixed sources and are the weakest link:
+        the sensitivity analysis shows the answer depends on exactly the values we are least
+        able to defend. I'd source the economic parameters from real cost data and drop the
+        others to ranges rather than point estimates, then report a distribution of good plans
+        instead of a single winner.</p>
+      <p>I'd also replace the manual filtering step. Rejecting fragmented plans by hand at the
+        end means a build-ability requirement exists in the process but not in the model; it
+        belongs in the fitness function as an adjacency penalty. And AHP weights are still one
+        group's judgement in numeric clothing — with real stakeholders, I'd elicit several
+        weight sets and show how the recommendation moves between them.</p>
+
+      <div class="btn-row">
+        <a class="btn btn-ghost" href="projects.html">Back to all projects</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span>Ann Dong — Data Science Portfolio</span>
+    <div class="footer-links">
+      <a href="mailto:qiuyandong@ucsb.edu">Email</a>
+      <a href="https://github.com/">GitHub</a>
+      <a href="https://linkedin.com/">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Classifying lizard species from measurements — Ann Dong</title>
+<meta name="description" content="Comparing SVM, AdaBoost and Random Forest for distinguishing eight Darevskia lizard species and sex from morphometric data.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="wordmark" href="index.html">Ann Dong</a>
+    <nav class="nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="resume.html">Resume</a>
+      <a href="projects.html" aria-current="page">Projects</a>
+      <a href="writing.html">Writing</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="sheet">
+
+  <section class="hero">
+    <h1>Telling eight lizard species apart from body measurements</h1>
+    <p class="lede">These lizards look almost identical and colour is an unreliable guide. Given
+      a table of body measurements, can a classifier do better than an expert eye?</p>
+  </section>
+
+  <section class="row">
+    <div class="gutter">
+      <p class="note">
+        <span class="term">Tools</span>
+        Python, scikit-learn — support vector machines, AdaBoost, Random Forest
+      </p>
+      <p class="note">
+        <span class="term">Timeframe</span>
+        Apr – Jun 2025
+      </p>
+      <p class="note">
+        <span class="term">Role</span>
+        <span class="todo">[Team of 4 — I owned the SVM models and the sensitivity analysis.
+        Confirm before publishing.]</span>
+      </p>
+    </div>
+    <div class="main">
+      <figure>
+        <div class="figure-empty">Confusion matrix for the integrated model across all eight
+          species. Save as <code>images/project-3.png</code> and replace this block with an
+          <code>&lt;img&gt;</code> tag.</div>
+        <figcaption>Rows are the true species, columns the predicted one. The diagonal is
+          correct calls; everything off it shows which species get mistaken for which — and
+          those confusions are not symmetric.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="row">
+    <div class="gutter">
+      <p class="note">
+        <span class="term">Morphometric data</span>
+        Physical measurements of an animal — body length, head width, scale and pore counts.
+        Twenty-three such variables were available per lizard.
+      </p>
+      <p class="note">
+        <span class="term">Kernel</span>
+        A support vector machine separates classes with a straight boundary. A kernel is a way
+        of bending the space first, so that classes which cannot be separated by a line become
+        separable.
+      </p>
+    </div>
+    <div class="main">
+      <h2>What was the problem?</h2>
+      <p>Eight species of wall lizard in the genus <em>Darevskia</em> are close enough in
+        appearance that they cannot be reliably told apart by eye. Females tend to be paler
+        than males, but colour judgement varies between observers and does not hold
+        consistently, so the field falls back on measuring the animals.</p>
+      <p>That leaves an awkward gap: the measurements exist, but knowing which combination of
+        twenty-three variables separates which species is not something you can eyeball either.
+        Getting it wrong matters, because species identification is what conservation work,
+        breeding programmes and population estimates are built on. The task was to find
+        numerical criteria — and the harder part, to find criteria that stay honest on a
+        dataset of only a few hundred animals.</p>
+    </div>
+  </section>
+
+  <section class="row">
+    <div class="gutter">
+      <p class="note">
+        <span class="term">Cross-validation</span>
+        Splitting the data into eight parts, training on seven and testing on the one held
+        back, then rotating. With a small sample this is the only way to get an accuracy
+        estimate that is not just a description of the training set.
+      </p>
+      <p class="note">
+        <span class="term">The decision I didn't take</span>
+        The integrated model originally used an SVM for both stages. Once Random Forest beat it
+        on sex, I replaced that stage rather than keeping one method for tidiness — the
+        coherent-looking choice would have been the worse one.
+      </p>
+    </div>
+    <div class="main">
+      <h2>What did I build?</h2>
+      <p>A support vector machine as the general-purpose backbone, applied across five tasks:
+        isolating one species from the rest using a single variable, finding the best pair of
+        predictors, classifying sex, separating species that live side by side, and finally
+        classifying both species and sex across the whole population. SVMs are designed for
+        two-class problems, so extending them to the multi-class cases was the main modelling
+        work. All results are eight-fold cross-validated, with kernel chosen per task rather
+        than fixed.</p>
+      <p>Where the SVM plateaued, I built targeted alternatives instead of tuning it further.
+        AdaBoost — which repeatedly re-weights the examples it got wrong — took the best-pair
+        task from 95.74% to 99.82%. Random Forest with a preprocessing pipeline
+        (standardisation, then principal component analysis to reduce dimensions) took sex
+        classification from 81.43% to 87.65%, and to 88.82% after dropping the variables that
+        information gain showed were contributing nothing.</p>
+      <p>The final model is a two-stage cascade: classify sex first, then species within that
+        sex. Sensitivity analysis over kernels, weak-classifier counts, learning rates, tree
+        counts and bootstrapping confirmed the settings were chosen rather than lucky — the
+        results move only slightly under parameter changes, except for turning bootstrapping
+        off, which cost about six points.</p>
+    </div>
+  </section>
+
+  <section class="row">
+    <div class="gutter">
+      <p class="note">
+        <span class="term">Second figure</span>
+        Variable importance from the Random Forest — one bar dominates the rest. Delete this
+        block if you don't have it.
+      </p>
+    </div>
+    <div class="main">
+      <h2>What did I find?</h2>
+      <p>Single-species isolation is close to solved: 99.82% accuracy separating species 5 using
+        right-side femoral pore counts alone. The harder tasks give a clear ordering of
+        difficulty — adjacent species pairs came in at 84–89%, sex at 88.82% after switching to
+        Random Forest, and the full eight-species-plus-sex problem at 79.47%, up from 72.97%
+        for the all-SVM version.</p>
+      <p>Two results are worth more than the accuracy numbers. First, the most informative
+        variables are not the obvious ones: scale and pore counts outperformed overall body
+        size, and the single most important predictor of sex was the ventral scale count along
+        the midline. Second, removing weakly informative variables <em>improved</em> accuracy
+        rather than merely simplifying the model, which is the signature of a small dataset
+        where extra features are mostly noise.</p>
+
+      <figure>
+        <div class="figure-empty">Optional second figure —
+          <code>images/project-3-results.png</code></div>
+        <figcaption><span class="todo">[Caption.]</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="row">
+    <div class="gutter">
+      <p class="note">
+        <span class="term">Why admit limits</span>
+        A 99.82% accuracy on a class with three members in the test fold is not what it looks
+        like. Naming that is more useful than the number.
+      </p>
+    </div>
+    <div class="main">
+      <h2>What would I do differently?</h2>
+      <p>I would stop reporting accuracy. The classes are badly imbalanced — in some folds the
+        rare species has a handful of specimens, so a model that predicts "not species 5"
+        every time already scores in the high nineties. Per-class recall and F1, with confidence
+        intervals from the cross-validation folds, would describe the models honestly; overall
+        accuracy flatters them.</p>
+      <p>I would also resist the exhaustive feature search. Iterating over every subset of
+        twenty-three variables and keeping the best is a good way to find a combination that
+        fits this particular sample, and the improvement it reports is partly selection effect.
+        A nested cross-validation, with feature selection inside the training fold, would give
+        a smaller and more trustworthy number.</p>
+
+      <div class="btn-row">
+        <a class="btn btn-ghost" href="projects.html">Back to all projects</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span>Ann Dong — Data Science Portfolio</span>
+    <div class="footer-links">
+      <a href="mailto:qiuyandong@ucsb.edu">Email</a>
+      <a href="https://github.com/">GitHub</a>
+      <a href="https://linkedin.com/">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

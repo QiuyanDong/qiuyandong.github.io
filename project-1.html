@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Project — Ann Dong</title>
-<meta name="description" content="Project write-up.">
+<title>Proofreading an EM connectome — Ann Dong</title>
+<meta name="description" content="Proofreading algorithmic neuron reconstructions in an electron microscopy connectome using CAVE and Neuroglancer.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
@@ -29,33 +29,37 @@
 <main class="sheet">
 
   <section class="hero">
-    <h1><span class="todo">[PROJECT NAME]</span></h1>
-    <p class="lede"><span class="todo">[One sentence a non-specialist could
-      follow.]</span></p>
+    <h1>Proofreading neuron reconstructions in an EM connectome</h1>
+    <p class="lede">An algorithm traced the neurons in this brain volume first. It made
+      mistakes. My job was to find them, one cell at a time, and correct them so the wiring
+      diagram could be trusted.</p>
   </section>
 
   <section class="row">
     <div class="gutter">
       <p class="note">
         <span class="term">Tools</span>
-        <span class="todo">[Python, PyTorch]</span>
+        CAVE (Connectome Annotation Versioning Engine), Neuroglancer
       </p>
       <p class="note">
         <span class="term">Timeframe</span>
-        <span class="todo">[Mar – Jun 2026]</span>
+        <span class="todo">[dates]</span>
       </p>
       <p class="note">
         <span class="term">Role</span>
-        <span class="todo">[Solo, or: team of 4 — I owned X]</span>
+        Proofreader on a shared reconstruction. I completed eight anatomical regions across
+        two versions of the reconstruction, and flagged neurons that had not been mapped.
       </p>
     </div>
     <div class="main">
       <figure>
-        <div class="figure-empty">The most important figure from this project. Save it as
+        <div class="figure-empty">A merge error before and after correction: two neurons
+          incorrectly joined into one segment, then separated. Save as
           <code>images/project-1.png</code> and replace this block with an
           <code>&lt;img&gt;</code> tag.</div>
-        <figcaption><span class="todo">[Caption explaining what the reader is looking at
-          and why it matters.]</span></figcaption>
+        <figcaption>Left, the segmentation as the algorithm produced it. Right, the same
+          region after the false join was cut — the two cells are now distinct, and the
+          synapses attributed to each of them change accordingly.</figcaption>
       </figure>
     </div>
   </section>
@@ -63,31 +67,62 @@
   <section class="row">
     <div class="gutter">
       <p class="note">
-        <span class="term">Define your terms</span>
-        Any word a smart non-specialist wouldn't know goes in this margin, in plain
-        language, the first time it appears in the text.
+        <span class="term">Electron microscopy (EM)</span>
+        The tissue is sliced extremely thin and imaged one slice at a time. Stacking the
+        images back up gives a 3D volume in which individual neurons are visible, but only as
+        cross-sections — a neuron appears as a small blob on each slice, and you have to decide
+        which blob on the next slice is the same cell.
+      </p>
+      <p class="note">
+        <span class="term">Segmentation</span>
+        The step where software assigns every pixel in the volume to a particular cell. Where
+        it goes wrong, the resulting shapes are not neurons.
       </p>
     </div>
     <div class="main">
       <h2>What was the problem?</h2>
-      <p><span class="todo">[TWO TO FOUR SENTENCES. What made this hard or worth doing?
-        Set up the problem before you introduce your solution — a reader who doesn't
-        understand the problem can't evaluate the answer.]</span></p>
+      <p>Automated segmentation of an EM volume is good but not correct. It produces two
+        characteristic failures. A <strong>merge error</strong> fuses two separate neurons into
+        one object, usually where their membranes touch and the boundary between them is faint.
+        A <strong>split error</strong> does the opposite: it breaks one neuron into several
+        fragments, typically where a thin process fades out or a slice is damaged.</p>
+      <p>Neither failure is cosmetic. Every downstream analysis of a connectome asks which cell
+        is connected to which, so a merge invents connections that do not exist and a split
+        hides connections that do. Errors are also unevenly distributed — they cluster in
+        exactly the fine, thin processes that carry most of the interesting connectivity.
+        Nothing in the pipeline flags them, which means the only way to remove them is for a
+        person to look.</p>
     </div>
   </section>
 
   <section class="row">
     <div class="gutter">
       <p class="note">
-        <span class="term">The decision you didn't take</span>
-        Naming one approach you considered and rejected is what separates judgment from
-        execution. Most student write-ups skip it, which is exactly why it stands out.
+        <span class="term">Why not automate it</span>
+        The tempting move is to write a heuristic that auto-splits suspicious objects. I
+        deliberately didn't: a wrong automatic edit is worse than a known error, because it
+        looks finished. Proofreading only adds value if each edit is defensible.
       </p>
     </div>
     <div class="main">
       <h2>What did I build?</h2>
-      <p><span class="todo">[THREE TO FIVE SENTENCES on your approach and the key
-        decisions. Include one thing you chose NOT to do, and why.]</span></p>
+      <p>Rather than a model, this was a method applied consistently. For each neuron I
+        followed the object through consecutive z-slices in Neuroglancer, watching whether its
+        cross-section behaved the way a real process behaves: continuous in position, changing
+        gradually in size and shape, with membranes that stay closed. Where two processes met
+        without a membrane between them, I treated that as a merge and cut it. Where a process
+        ended abruptly, I looked for its continuation on the adjacent slices and, if the
+        morphology lined up, joined the fragments back together.</p>
+      <p>Every edit went through CAVE, so the reconstruction stays versioned and each change is
+        attributable and reversible. That mattered more than it sounds: I worked across two
+        versions of the reconstruction, and being able to see what an earlier decision was —
+        and who made it — is what makes a shared proofreading effort coherent rather than a
+        series of overwrites.</p>
+      <p>The judgement call I made most often was to <em>not</em> edit. When the morphology was
+        genuinely ambiguous across slices — a process vanishing into a damaged region, two
+        candidate continuations equally plausible — I left the object as it was and flagged it,
+        instead of committing a guess. An unresolved object is visible to the next person; a
+        confident wrong merge is not.</p>
     </div>
   </section>
 
@@ -95,17 +130,28 @@
     <div class="gutter">
       <p class="note">
         <span class="term">Second figure</span>
-        If your results are visual, this is the place for the second chart. Delete the
-        figure block if you don't have one.
+        A split error and its repair, or a montage of one neuron across consecutive slices.
+        Delete this figure block if you don't have one.
       </p>
     </div>
     <div class="main">
       <h2>What did I find?</h2>
-      <p><span class="todo">[Results, with numbers. Say what the numbers mean, not just
-        what they are.]</span></p>
+      <p>I completed proofreading for <strong>eight anatomical regions</strong> across two
+        versions of the reconstruction, working through the neurons in each region and
+        resolving merge and split errors as I found them. Alongside that, I helped identify and
+        organise neurons that had not previously been mapped — cells present in the imagery but
+        missing from the reconstruction, which no amount of correcting existing objects would
+        have surfaced.</p>
+      <p>The substantive finding is about where the errors live. Merges concentrated at points
+        of membrane contact between neighbouring processes, and splits at thin neurites and
+        across imaging artefacts — which means proofreading effort is worth targeting at fine
+        structure rather than spread evenly over a volume. The output of the work is not a
+        result but a floor: circuit-level analyses built on these regions now rest on
+        connectivity that a person has checked, so a surprising connection in the data is more
+        likely to be biology than a segmentation artefact.</p>
 
       <figure>
-        <div class="figure-empty">Optional results figure —
+        <div class="figure-empty">Optional second figure —
           <code>images/project-1-results.png</code></div>
         <figcaption><span class="todo">[Caption.]</span></figcaption>
       </figure>
@@ -116,16 +162,22 @@
     <div class="gutter">
       <p class="note">
         <span class="term">Why admit limits</span>
-        Naming a real limitation makes everything above it more credible, not less.
-        Reviewers notice when this section is missing.
+        Proofreading is a judgement task, and judgement tasks need agreement metrics to be
+        credible. Saying so is more convincing than claiming the regions are clean.
       </p>
     </div>
     <div class="main">
       <h2>What would I do differently?</h2>
-      <p><span class="todo">[TWO OR THREE SENTENCES.]</span></p>
+      <p>I would track my own error statistics from the start — how many merges versus splits
+        per region, how long each region took, which structures forced the most ambiguous
+        calls. I have the corrections but not the tally, and that tally is what would let
+        anyone estimate how much error is likely left.</p>
+      <p>I would also want a second proofreader to independently redo a sample of my regions,
+        so there is a concordance figure rather than my own confidence. And I would keep a
+        written record of the ambiguous cases and how I resolved them, since consistency across
+        a long stretch of this work is harder to maintain than any single decision.</p>
 
       <div class="btn-row">
-        <a class="btn btn-ghost" href="https://github.com/qiuyandong">View on GitHub</a>
         <a class="btn btn-ghost" href="projects.html">Back to all projects</a>
       </div>
     </div>
@@ -138,8 +190,8 @@
     <span>Ann Dong — Data Science Portfolio</span>
     <div class="footer-links">
       <a href="mailto:qiuyandong@ucsb.edu">Email</a>
-      <a href="https://github.com/qiuyandong">GitHub</a>
-      <a href="https://www.linkedin.com/in/ann-dong-a5a053351">LinkedIn</a>
+      <a href="https://github.com/">GitHub</a>
+      <a href="https://linkedin.com/">LinkedIn</a>
     </div>
   </div>
 </footer>

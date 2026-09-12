@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Building a school timetable with a genetic algorithm — Ann Dong</title>
+<meta name="description" content="An intelligent course scheduling system: requirements gathered from school administrators, modelled as a multi-objective optimisation and solved with a genetic algorithm.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="wordmark" href="index.html">Ann Dong</a>
+    <nav class="nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="resume.html">Resume</a>
+      <a href="projects.html" aria-current="page">Projects</a>
+      <a href="writing.html">Writing</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="sheet">
+
+  <section class="hero">
+    <h1>Building a school timetable with a genetic algorithm</h1>
+    <p class="lede">Timetabling looks like a puzzle and behaves like a negotiation. This one
+      started with interviews rather than code, because the constraints had to be written down
+      before anything could be optimised.</p>
+  </section>
+
+  <section class="row">
+    <div class="gutter">
+      <p class="note">
+        <span class="term">Tools</span>
+        Python — genetic algorithm written from scratch; mini-program prototype for the
+        interface
+      </p>
+      <p class="note">
+        <span class="term">Timeframe</span>
+        Oct 2022 – Mar 2023
+      </p>
+      <p class="note">
+        <span class="term">Role</span>
+        <span class="todo">[Led the project — requirements, model, algorithm. Confirm team size
+        before publishing.]</span>
+      </p>
+    </div>
+    <div class="main">
+      <figure>
+        <div class="figure-empty">A generated timetable in the prototype interface, with room
+          assignments and movement between sessions. Save as
+          <code>images/project-6.png</code> and replace this block with an
+          <code>&lt;img&gt;</code> tag.</div>
+        <figcaption>Four classes over five daily sessions. The schedule is legal by
+          construction — no double-booked room or teacher — and the interesting differences
+          between candidate schedules are in the soft criteria.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="row">
+    <div class="gutter">
+      <p class="note">
+        <span class="term">Hard and soft constraints</span>
+        Hard constraints must hold or the timetable is invalid — one teacher cannot be in two
+        rooms at once. Soft constraints are preferences you want as much of as possible: short
+        walks between rooms, difficult subjects in the morning. Keeping them separate is the
+        whole trick.
+      </p>
+    </div>
+    <div class="main">
+      <h2>What was the problem?</h2>
+      <p>Building a school timetable by hand takes days and produces a schedule that is legal
+        but not good — nobody has time to compare alternatives. The scheduling problem itself is
+        combinatorially large and, in the general case, computationally hard, so the goal was
+        never a provably optimal timetable but a much better one, found quickly enough to
+        iterate on.</p>
+      <p>The harder part came before the modelling. What counts as a better timetable was not
+        written down anywhere. I interviewed four-plus school administrators to find out, and
+        the answers were a mix of absolute rules and strong preferences that had never been
+        distinguished from each other. Turning that into four hard constraints and eight soft
+        ones was the step that made the rest of the project possible, and the step most likely
+        to be skipped.</p>
+    </div>
+  </section>
+
+  <section class="row">
+    <div class="gutter">
+      <p class="note">
+        <span class="term">The decision I didn't take</span>
+        I did not encode the soft constraints as constraints. Doing so would have made most
+        schedules infeasible and hidden the trade-offs; scoring them in the fitness function
+        instead keeps them visible and negotiable.
+      </p>
+    </div>
+    <div class="main">
+      <h2>What did I build?</h2>
+      <p>A multi-objective model with a custom fitness function scoring three things that
+        administrators actually named: classroom utilisation, the walking distance each person
+        accumulates across a day, and how well session times match subject preferences. Hard
+        constraints are handled separately by conflict-resolution logic rather than by the
+        score, so every candidate the algorithm considers is a valid timetable and the score
+        only measures quality.</p>
+      <p>The genetic algorithm is written from scratch, with crossover and mutation
+        probabilities that adapt as the population converges — high early to explore, lower
+        later to refine, which avoids both premature convergence and endless random walking. I
+        validated it on a pilot instance of four classes over five daily sessions.</p>
+      <p>On top of that I built a small prototype interface that displays the generated
+        timetable and lets an administrator change inputs and re-run. That was deliberate: a
+        scheduling model nobody can poke at is a result, not a tool, and the questions
+        administrators asked once they could see a timetable were different from the ones they
+        asked in interviews.</p>
+    </div>
+  </section>
+
+  <section class="row">
+    <div class="gutter">
+      <p class="note">
+        <span class="term">Second figure</span>
+        Fitness score by generation, or a before-and-after comparison of movement conflicts.
+        Delete this block if you don't have it.
+      </p>
+    </div>
+    <div class="main">
+      <h2>What did I find?</h2>
+      <p>On the pilot instance the algorithm produced schedules with no movement conflicts at
+        all, and improved classroom utilisation and timing-preference scores relative to the
+        starting population. <span class="todo">[Insert the actual figures — utilisation
+        before/after, conflicts resolved, runtime per run. The claim is much weaker without
+        them.]</span></p>
+      <p>What the pilot showed beyond the numbers is that the soft criteria pull against each
+        other. Packing rooms to raise utilisation moves classes apart and increases walking;
+        respecting subject-time preferences constrains which rooms are free. There is no
+        schedule that maximises all three, so the useful output of the system is not one
+        timetable but a set of them at different points on that trade-off, with the choice left
+        to the person who has to defend it.</p>
+
+      <figure>
+        <div class="figure-empty">Optional second figure —
+          <code>images/project-6-results.png</code></div>
+        <figcaption><span class="todo">[Caption.]</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="row">
+    <div class="gutter">
+      <p class="note">
+        <span class="term">Why admit limits</span>
+        Four classes is a demonstration, not a test. A reader who schedules for a living will
+        notice that immediately, so it is better to name it first.
+      </p>
+    </div>
+    <div class="main">
+      <h2>What would I do differently?</h2>
+      <p>The pilot is too small to support claims about the method. Four classes over five
+        sessions is a scale where a careful human does fine; the case for the algorithm only
+        exists at whole-school scale, and I never tested there. I'd run it on a real full
+        timetable and report how runtime and quality scale.</p>
+      <p>I'd also add a baseline. Without comparing against the school's hand-built schedule
+        and against a simple solver on the same instance, "significantly optimised" is a claim
+        about my own starting population rather than about anything a school currently uses.
+        That comparison is cheap to run and is what would make the result persuasive.</p>
+
+      <div class="btn-row">
+        <a class="btn btn-ghost" href="projects.html">Back to all projects</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span>Ann Dong — Data Science Portfolio</span>
+    <div class="footer-links">
+      <a href="mailto:qiuyandong@ucsb.edu">Email</a>
+      <a href="https://github.com/">GitHub</a>
+      <a href="https://linkedin.com/">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

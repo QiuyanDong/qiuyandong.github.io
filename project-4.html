@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Forecasting CO₂ and global temperature — Ann Dong</title>
+<meta name="description" content="Regression, ARIMA and a neural network applied to CO₂ concentration and global mean surface-air temperature, and the correlation between them.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="wordmark" href="index.html">Ann Dong</a>
+    <nav class="nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="resume.html">Resume</a>
+      <a href="projects.html" aria-current="page">Projects</a>
+      <a href="writing.html">Writing</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="sheet">
+
+  <section class="hero">
+    <h1>Forecasting CO₂ and global temperature, and the link between them</h1>
+    <p class="lede">Sixty years of atmospheric data, three different models, and one question
+      that turned out to matter more than the forecasts: how far ahead is any of this
+      trustworthy?</p>
+  </section>
+
+  <section class="row">
+    <div class="gutter">
+      <p class="note">
+        <span class="term">Tools</span>
+        MATLAB, SPSS — least-squares regression, ARIMA time series, back-propagation neural
+        network
+      </p>
+      <p class="note">
+        <span class="term">Timeframe</span>
+        Jan 2024 – Mar 2025
+      </p>
+      <p class="note">
+        <span class="term">Role</span>
+        <span class="todo">[Team — I owned the ARIMA models and the correlation analysis.
+        Confirm before publishing.]</span>
+      </p>
+    </div>
+    <div class="main">
+      <figure>
+        <div class="figure-empty">CO₂ concentration, observed 1959–2021 and projected to 2100,
+          with the ARIMA confidence band. Save as <code>images/project-4.png</code> and replace
+          this block with an <code>&lt;img&gt;</code> tag.</div>
+        <figcaption>The observed record is the tight curve on the left. The widening band to
+          the right is the honest part of the chart — the projection's uncertainty grows faster
+          than its central estimate.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="row">
+    <div class="gutter">
+      <p class="note">
+        <span class="term">ARIMA</span>
+        A time-series model that predicts the next value from recent values and recent errors.
+        The "I" is for differencing: subtracting each value from the previous one until the
+        series stops trending, because the method needs a stable series to work on.
+      </p>
+      <p class="note">
+        <span class="term">R²</span>
+        How much of the variation in the data the model accounts for, from 0 to 1. High R² on
+        past data says nothing about accuracy on future data — a distinction this project ran
+        into directly.
+      </p>
+    </div>
+    <div class="main">
+      <h2>What was the problem?</h2>
+      <p>Two linked questions about the climate record. First, how fast is atmospheric CO₂
+        rising, and where does it land in 2050 and 2100? Second, how strongly is that tied to
+        global mean surface-air temperature — and if it is, what does a doubling of CO₂ imply
+        for warming?</p>
+      <p>The difficulty is not fitting the data. Both series trend hard upward and almost any
+        curve will fit them well, which makes goodness-of-fit a bad guide to choosing between
+        models. The real problem is that all three questions require extrapolating decades past
+        the end of the record, where the models disagree most and no data exists to settle the
+        disagreement. Picking a model therefore means reasoning about its behaviour out of
+        sample, not its score in sample.</p>
+    </div>
+  </section>
+
+  <section class="row">
+    <div class="gutter">
+      <p class="note">
+        <span class="term">The decision I didn't take</span>
+        The neural network fit the data best — R² of 0.999 — and I still rejected it for
+        long-range forecasting. Beyond about ten years it has to predict from its own
+        predictions, and its 2100 estimates drift to obviously implausible values. Best fit is
+        not best model.
+      </p>
+    </div>
+    <div class="main">
+      <h2>What did I build?</h2>
+      <p>Three models, fitted to both series so they could be compared on the same footing.
+        Piecewise linear and quadratic regression by least squares; ARIMA, with the
+        differencing order, autoregressive order and moving-average order each read off
+        autocorrelation and partial autocorrelation plots rather than guessed — giving
+        ARIMA(3,2,2) for CO₂ and ARIMA(3,1,2) for temperature; and a three-layer
+        back-propagation neural network with hidden-layer size set by the Kolmogorov–Arnold
+        representation theorem.</p>
+      <p>The extension I'd point to is using ARIMA on the regression's <em>residuals</em>.
+        A regression captures the trend and throws away the structure in what it misses;
+        refitting that leftover as a time series and combining the two as a multivariate
+        regression recovered some of it, lifting the correlation model's R² from 0.924 to
+        0.936. Small, but it is the difference between treating noise as noise and treating it
+        as something with its own pattern.</p>
+      <p>For the CO₂–temperature relationship I ran both Pearson (linear) and Spearman
+        (monotonic) correlation before fitting anything, so that the choice of a linear model
+        was justified by the data rather than by convenience.</p>
+    </div>
+  </section>
+
+  <section class="row">
+    <div class="gutter">
+      <p class="note">
+        <span class="term">Second figure</span>
+        The CO₂–temperature scatter with the fitted relationship, before and after the
+        residual correction. Delete this block if you don't have it.
+      </p>
+    </div>
+    <div class="main">
+      <h2>What did I find?</h2>
+      <p>ARIMA fits the CO₂ record almost exactly (R² = 0.999) and projects 497.97 ppm by 2050
+        and 770.57 by 2100. The 2050 figure sits well above the 685 ppm-by-later-century
+        trajectory implied by OECD projections, which is itself informative: a model driven only
+        by the historical curve produces a faster rise than scenario-based forecasts, because
+        it has no mechanism for policy or technology change.</p>
+      <p>For temperature, quadratic regression and ARIMA agree closely — 1.25 °C above the
+        1951–1980 baseline around 2030, 1.5 °C by 2038, 2 °C by 2052 — and their agreement is
+        worth more than either alone, since they reach it by different routes. The correlation
+        is strong on both measures (Pearson 0.961, Spearman 0.949), and the fitted relationship
+        implies a doubling of atmospheric CO₂ corresponds to roughly 4–4.5 °C of warming.</p>
+      <p>The finding I care about most is the reliability boundary. Testing the correlation
+        model against the two independent forecasts, the curves track each other closely below
+        about 470 ppm — roughly 2040 — and then separate, reaching about 20% error near 650 ppm.
+        So the model is usable for about two decades and not beyond, which is a far more useful
+        statement than a 2100 number quoted to two decimal places.</p>
+
+      <figure>
+        <div class="figure-empty">Optional second figure —
+          <code>images/project-4-results.png</code></div>
+        <figcaption><span class="todo">[Caption.]</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="row">
+    <div class="gutter">
+      <p class="note">
+        <span class="term">Why admit limits</span>
+        A correlation model with R² of 0.936 invites over-reading. Stating where it breaks is
+        what makes the part that works credible.
+      </p>
+    </div>
+    <div class="main">
+      <h2>What would I do differently?</h2>
+      <p>The assumptions are too strong to carry the 2100 numbers. The models assume no major
+        climate disruption, a stable ecosystem, and no significant change in energy technology
+        — reasonable for a two-decade extrapolation, indefensible for an eight-decade one. I'd
+        report 2040 and drop 2100, or present 2100 only as a what-if with its assumptions
+        attached.</p>
+      <p>Substantively, both series are modelled as functions of time alone. CO₂ does not rise
+        because the year increases; it rises because of emissions. A multivariate model taking
+        emissions, land use and forcing as inputs would be a model of the mechanism rather than
+        of the curve, and it would degrade more gracefully when the curve changes shape.</p>
+
+      <div class="btn-row">
+        <a class="btn btn-ghost" href="projects.html">Back to all projects</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span>Ann Dong — Data Science Portfolio</span>
+    <div class="footer-links">
+      <a href="mailto:qiuyandong@ucsb.edu">Email</a>
+      <a href="https://github.com/">GitHub</a>
+      <a href="https://linkedin.com/">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>An agent that writes carbon footprint reports — Ann Dong</title>
+<meta name="description" content="A language-model agent workflow that turns a wind turbine bill of materials into a life-cycle carbon footprint report.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="wordmark" href="index.html">Ann Dong</a>
+    <nav class="nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="resume.html">Resume</a>
+      <a href="projects.html" aria-current="page">Projects</a>
+      <a href="writing.html">Writing</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="sheet">
+
+  <section class="hero">
+    <h1>A language-model agent that writes carbon footprint reports</h1>
+    <p class="lede">Working out the lifetime carbon emissions of a wind turbine normally takes
+      a specialist weeks. I built a workflow that takes the turbine's parts list and returns a
+      finished report.</p>
+  </section>
+
+  <section class="row">
+    <div class="gutter">
+      <p class="note">
+        <span class="term">Tools</span>
+        Low-code agent workflow platform, Python, HTML templating,
+        deepseek-v4-flash as the language model
+      </p>
+      <p class="note">
+        <span class="term">Timeframe</span>
+        2026
+      </p>
+      <p class="note">
+        <span class="term">Role</span>
+        Solo — I designed the workflow, wrote the calculation and rendering code, and validated
+        the output against the manufacturer's published figure.
+      </p>
+    </div>
+    <div class="main">
+      <figure>
+        <div class="figure-empty">The workflow graph: 14 nodes, 15 edges, alternating code and
+          language-model steps. Save as <code>images/project-2.png</code> and replace this
+          block with an <code>&lt;img&gt;</code> tag.</div>
+        <figcaption>Code nodes do the arithmetic and the rendering; language-model nodes handle
+          extraction, prose, and — for reasons explained below — moving data between code
+          steps.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="row">
+    <div class="gutter">
+      <p class="note">
+        <span class="term">Life-cycle assessment (LCA)</span>
+        Adding up the environmental cost of a product across its whole life: making it,
+        installing it, running it, and disposing of it. The relevant standards here are
+        ISO 14040/44.
+      </p>
+      <p class="note">
+        <span class="term">g CO₂-e/kWh</span>
+        Grams of carbon dioxide equivalent per kilowatt-hour of electricity the turbine
+        generates over its life. It lets you compare a wind turbine with a gas plant on the
+        same scale.
+      </p>
+    </div>
+    <div class="main">
+      <h2>What was the problem?</h2>
+      <p>Wind power is clean to run but not free to build. Most of a turbine's lifetime carbon
+        is spent before it generates anything, in producing the steel for the tower and the
+        composite for the blades. Manufacturers and wind farm owners increasingly have to
+        quantify that — for environmental product declarations, for procurement, for ESG
+        disclosure.</p>
+      <p>Doing it properly is slow. A standards-compliant LCA is a long manual process with a
+        high expertise barrier, and it is barely reusable: change the turbine model or receive
+        a new batch of supplier data and much of the work is repeated from scratch. That
+        combination — repetitive, structured, rule-governed, but requiring judgement at the
+        edges — is what made it worth trying to automate.</p>
+    </div>
+  </section>
+
+  <section class="row">
+    <div class="gutter">
+      <p class="note">
+        <span class="term">Bill of materials (BOM)</span>
+        The parts list: how many tonnes of steel, aluminium, copper, composite and so on go
+        into one machine. For the demonstration case that is around 216,000 tonnes of steel and
+        iron and 9,700 tonnes of glass and carbon fibre across a 66-turbine farm.
+      </p>
+      <p class="note">
+        <span class="term">The decision I didn't take</span>
+        I did not build an independent inventory. Emission factors were back-calibrated against
+        the manufacturer's published result, which makes this a re-computation and reporting
+        harness — not a new LCA. Saying so is the difference between a validated tool and a
+        circular one.
+      </p>
+    </div>
+    <div class="main">
+      <h2>What did I build?</h2>
+      <p>A 14-node workflow with a single linear job: bill of materials in, report out. The
+        chain extracts material masses from free text, multiplies each by an emission factor and
+        divides by lifetime generation, splits the total across manufacturing, installation,
+        operation and end-of-life recycling credit, ranks materials by contribution, generates
+        prioritised abatement measures from a lookup table, merges the three result streams,
+        serialises them to a fixed JSON schema, and renders the whole thing into an HTML
+        report with summary figures, tables and charts.</p>
+      <p>Two platform constraints shaped the architecture more than any design preference. Code
+        nodes cannot pass data directly to other code nodes, so every pair of adjacent
+        calculation steps needed a language-model node between them acting as a relay — which
+        is why the graph alternates code and model rather than simply chaining functions. The
+        prompts for those relay nodes say, emphatically, to restructure the payload as JSON and
+        change no numbers, because a model that quietly rounds a figure in transit would be
+        very hard to catch. The second constraint is that the platform cannot emit a file, so
+        the final node outputs HTML source that the user saves and opens themselves.</p>
+      <p>The choice I'd defend hardest is the one I made about calibration, described in the
+        margin. The emission factors are tuned to reproduce a known answer. That means the
+        system demonstrates that the pipeline and the accounting structure work — it does not
+        independently establish the turbine's footprint, and presenting it as if it did would
+        be the easiest way to make this project worthless.</p>
+    </div>
+  </section>
+
+  <section class="row">
+    <div class="gutter">
+      <p class="note">
+        <span class="term">Cradle-to-grave</span>
+        The system boundary used here: everything from extracting raw materials to scrapping
+        and recycling the machine at the end of its life.
+      </p>
+    </div>
+    <div class="main">
+      <h2>What did I find?</h2>
+      <p>The workflow returns <strong>6.99 g CO₂-e/kWh</strong> for the demonstration turbine,
+        against the manufacturer's published 7.0 — a gap under 0.2%, which is the check that
+        the accounting structure and parameters hold together.</p>
+      <p>The interesting part is the breakdown. Manufacturing alone is 7.10 g CO₂-e/kWh, about
+        79% of gross emissions; installation contributes 0.40 and operation 1.50; recycling at
+        end of life returns a credit of −2.01, cutting the lifetime net figure by roughly 22%.
+        Within manufacturing, two materials do almost all the damage: steel and iron at 55.3%
+        of material emissions and glass and carbon fibre at 29.1%, together over 84%.</p>
+      <p>That is a useful result rather than a tidy one, because it tells you where effort
+        belongs. Improving operational practice moves a number that is 17% of the total;
+        switching to hydrogen-reduced steel for the tower and foundation moves one that is more
+        than half of it. The report's generated recommendations follow that logic — green steel
+        and recyclable blade resin at high priority, low-carbon maintenance vessels at
+        moderate.</p>
+
+      <figure>
+        <div class="figure-empty">The rendered report: summary cards, stage-by-stage table, and
+          material contribution chart — <code>images/project-2-results.png</code></div>
+        <figcaption>Output of a single run. Everything on the page is generated from the parts
+          list; nothing is typed by hand.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="row">
+    <div class="gutter">
+      <p class="note">
+        <span class="term">Why admit limits</span>
+        The default failure mode here is a report that looks authoritative because it is
+        well-formatted. The limits section is what stops a reader from over-trusting it.
+      </p>
+    </div>
+    <div class="main">
+      <h2>What would I do differently?</h2>
+      <p>The failure mode I would fix first is the fallback defaults. Each code node carries
+        preset values calibrated to reproduce the reference result, so if the input parts list
+        is missing or malformed the chain still produces a complete, confident-looking report —
+        of the defaults, not of the input. That should fail loudly instead of silently, and
+        the report should state which fields came from the user.</p>
+      <p>Beyond that: the single-model, single-turbine scope is a minimum viable demonstration
+        rather than a tool, and the obvious next steps are sourcing emission factors
+        independently so the validation stops being circular, refining the accounting from nine
+        material classes to component level, and adding transport, more greenhouse gases, and
+        uncertainty ranges. Reading the bill of materials straight out of a PLM or ERP system
+        would remove the one manual step that still gates the whole thing.</p>
+
+      <div class="btn-row">
+        <a class="btn btn-ghost" href="projects.html">Back to all projects</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span>Ann Dong — Data Science Portfolio</span>
+    <div class="footer-links">
+      <a href="mailto:qiuyandong@ucsb.edu">Email</a>
+      <a href="https://github.com/">GitHub</a>
+      <a href="https://linkedin.com/">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

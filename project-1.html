@@ -53,12 +53,9 @@
     </div>
     <div class="main">
       <figure>
-        <div class="figure-empty">A merge error before and after correction: two neurons
-          incorrectly joined into one segment, then separated. Save as
-          <code>images/project-1.png</code> and replace this block with an
-          <code>&lt;img&gt;</code> tag.</div>
-        <figcaption>Left, the segmentation as the algorithm produced it. Right, the same
-          region after the false join was cut — the two cells are now distinct, and the
+        <img src="images/project-1.svg" alt="Four consecutive slices shown twice: above, two neurons fused into one object where the membrane between them is faint; below, the same slices after the false join was cut.">
+        <figcaption>Above, the segmentation as the algorithm produced it. Below, the same
+          slices after the false join was cut — the two cells are now distinct, and the
           synapses attributed to each of them change accordingly.</figcaption>
       </figure>
     </div>
@@ -129,9 +126,10 @@
   <section class="row">
     <div class="gutter">
       <p class="note">
-        <span class="term">Second figure</span>
-        A split error and its repair, or a montage of one neuron across consecutive slices.
-        Delete this figure block if you don't have one.
+        <span class="term">Both directions</span>
+        Merges and splits are opposite errors with opposite consequences: one invents
+        connections, the other hides them. A region isn't finished until it has been read for
+        both.
       </p>
     </div>
     <div class="main">
@@ -151,9 +149,10 @@
         likely to be biology than a segmentation artefact.</p>
 
       <figure>
-        <div class="figure-empty">Optional second figure —
-          <code>images/project-1-results.png</code></div>
-        <figcaption><span class="todo">[Caption.]</span></figcaption>
+        <img src="images/project-1-results.svg" alt="Five consecutive slices shown twice: above, one neuron returned as two fragments because its process thins below the resolution of the imaging; below, the fragments rejoined across the gap.">
+        <figcaption>The opposite failure. One neuron comes back as two fragments because its
+          process thins out of view on a single slice; the fragments line up in position and
+          taper consistently, which is the evidence for joining them.</figcaption>
       </figure>
     </div>
   </section>
